@@ -52,7 +52,75 @@ level3_bg = PhotoImage(file="Images/level3_bg.png")
 player_img = PhotoImage(file="Images/player.png")
 
 
+#=========================== ALL LEVELS =======================
 
+def level1(event):
+    canvas.delete("all")
+    global player
+    # =============   GRASS IMAGES =========
+    canvas.create_image(1, 0, image=summer_bg, anchor="nw")
+    canvas.create_image(300,180, image = grass_img, anchor="nw", tags = "platform")
+    canvas.create_image(430,280, image = grass_img, anchor="nw", tags = "platform")
+    canvas.create_image(150,330, image = grass_img, anchor="nw", tags = "platform")
+    canvas.create_image(680,380, image = grass_img, anchor="nw", tags = "platform")
+    canvas.create_image(990,430, image = grass_img, anchor="nw", tags = "platform")
+    canvas.create_image(710,230, image = grass_img, anchor="nw", tags = "platform")
+    canvas.create_image(980,300, image = grass_img, anchor="nw", tags = "platform")
+    canvas.create_image(130,500, image = grass_img, anchor="nw", tags = "platform")
+    canvas.create_image(330,630, image = grass_img, anchor="nw", tags = "platform")
+    canvas.create_image(480,530, image = grass_img, anchor="nw", tags = "platform")
+    canvas.create_image(980,630, image = grass_img, anchor="nw", tags = "platform")
+    canvas.create_image(10,650, image = grass_img, anchor="nw", tags = "platform")
+    # ==================  DOOR AND KEY IMAGE ===============
+    canvas.create_image(380,100, image = door_img, anchor = "nw")
+    canvas.create_image(1120,250, image = key_img, anchor = "nw")
+    # ==================  STONE IMAGES ===============
+    canvas.create_image(650,600, image = stone_img, anchor="nw", tags = "platform")
+    canvas.create_image(450,400, image = stone_img, anchor="nw", tags = "platform")
+    canvas.create_image(800,550, image = stone_img, anchor="nw", tags = "platform")
+    canvas.create_image(950,450, image = stone_img, anchor="nw", tags = "platform")
+    # ==================  FLOWERS ===============
+    canvas.create_image(950,200, image = flower_img, anchor = "nw")
+    canvas.create_image(900,520, image = flower_img, anchor = "nw")
+    canvas.create_image(100,390, image = flower_img, anchor = "nw")
+
+    # ==================  COINS, DIMOND, THORN, MONEY ===============
+
+    # _______ MONEY IMAGES _________
+    canvas.create_image(240,280, image = money_img, anchor = 'nw')
+    canvas.create_image(730,330, image = money_img, anchor = "nw")
+    
+    # _______ DIMOND IMAGES _________
+    canvas.create_image(470,350, image = dimond_img, anchor = 'nw')
+    canvas.create_image(820,500, image = dimond_img, anchor = 'nw')
+
+    # _______ COIN IMAGES _________
+    canvas.create_image(410,600, image = coin_img, anchor = 'nw')
+    canvas.create_image(980,420, image = coin_img, anchor = 'nw')
+    canvas.create_image(1170,380, image = coin_img, anchor = 'nw')
+
+    # _______ MONSTER IMAGES _________
+    canvas.create_image(270,450, image =monster_img, anchor = 'nw')
+    canvas.create_image(510,240, image =monster_img, anchor = 'nw')
+    canvas.create_image(800,340, image =monster_img, anchor = 'nw')
+
+    # _______ THORN IMAGES _________
+    canvas.create_image(770,130, image =thorn_img, anchor = 'nw')
+    canvas.create_image(550,430, image =thorn_img, anchor = 'nw')
+    canvas.create_image(1060,530, image =thorn_img, anchor = 'nw')
+
+    # ==================  PLAYER ===============
+    player = canvas.create_image(10,150, image =player_img, anchor="nw")
+    canvas.create_image(25, 10, image=back_img, anchor="nw", tags="back_all_levels")
+    window.after(TIMED_LOOP, gravity)  
+    
+def level2(event):
+    canvas.create_image(1, 0, image=summer_bg, anchor="nw")
+    canvas.create_image(25, 10, image=back_img, anchor="nw", tags="back_all_levels")
+
+def level3(event):
+    canvas.create_image(1, 0, image=level3_bg, anchor="nw")
+    canvas.create_image(25, 10, image=back_img, anchor="nw", tags="back_all_levels")
 
 
 # ======================= HOME_PAGE =============================
@@ -64,8 +132,16 @@ def home():
 
 
 # ======================= BACK TO LEVELS PAGE =============================
-
-
+def backTolevel(event):
+    allLevels()
+def help(event):
+    canvas.create_image(1, 0, image=winter_bg, anchor="nw")
+    canvas.create_image(380,100, image = help_board, anchor="nw")
+    canvas.create_image(25, 10, image=back_img, anchor="nw", tags="back_home")
+def start(event):
+    allLevels()
+def backHome(event):
+    home()
 #============================ EXIT ============================
 def exit(event):
     window.destroy()
@@ -137,11 +213,19 @@ def stop_move(event):
 
 
 #============================ KEY EVENT ============================
+canvas.tag_bind("start","<Button-1>", start)
+canvas.tag_bind("help","<Button-1>",help)
 
 
 #========================= REMOTES =================
 window.bind("<Key>", start_move)
 window.bind("<KeyRelease>", stop_move)
+canvas.tag_bind("exit","<Button-1>", exit)
+canvas.tag_bind("back_home","<Button-1>",backHome)
+canvas.tag_bind("back_all_levels","<Button-1>",backTolevel)
+canvas.tag_bind("level1","<Button-1>",level1)
+canvas.tag_bind("level2","<Button-1>",level2)
+canvas.tag_bind("level3","<Button-1>",level3)
 
 
 home()
