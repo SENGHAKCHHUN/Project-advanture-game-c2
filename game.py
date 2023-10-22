@@ -48,8 +48,17 @@ money_img = PhotoImage(file="Images/money.png")
 thorn_img = PhotoImage(file="Images/thorn.png")
 dimond_img = PhotoImage(file="Images/dimond.png")
 monster_img = PhotoImage(file="Images/monster.png")
-level3_bg = PhotoImage(file="Images/level3_bg.png")
+# level3_bg = PhotoImage(file="Images/level3_bg.png")
 player_img = PhotoImage(file="Images/player.png")
+
+snow_bg = PhotoImage(file="Images/snow_bg.png")
+ice_stone = PhotoImage(file="Images/ice_stone.png")
+christmas_tree = PhotoImage(file="Images/Christmas_tree.png")
+christmas_branch = PhotoImage(file="Images/Christmas_branch.png")
+snow_house = PhotoImage(file="Images/snow_house.png")
+monster_snow = PhotoImage(file="Images/monster_snow.png")
+ice_thorn = PhotoImage(file="Images/ice_thorn.png")
+present_png = PhotoImage(file="Images/present.png")
 
 
 #=========================== ALL LEVELS =======================
@@ -120,8 +129,77 @@ def level2(event):
     canvas.create_image(25, 10, image=back_img, anchor="nw", tags="back_all_levels")
 
 def level3(event):
-    canvas.create_image(1, 0, image=level3_bg, anchor="nw")
+    canvas.delete("all")
+    canvas.create_image(1, 0, image=snow_bg, anchor="nw")
+
+    # =============   ICE_STONE​​ IMAGE  =========
+
+    canvas.create_image(300,100, image = ice_stone, anchor="nw", tags = "platform")
+    canvas.create_image(300,330, image = ice_stone, anchor="nw", tags = "platform")
+    canvas.create_image(330,500, image = ice_stone, anchor="nw", tags = "platform")
+    canvas.create_image(280,700, image = ice_stone, anchor="nw", tags = "platform")
+    canvas.create_image(10,650, image = ice_stone, anchor="nw", tags = "platform")
+    canvas.create_image(900,100, image = ice_stone, anchor="nw", tags = "platform")
+    canvas.create_image(1030,270, image = ice_stone, anchor="nw", tags = "platform")
+    canvas.create_image(1150,600, image = ice_stone, anchor="nw", tags = "platform")    
+
+    # ==================  DOOR AND KEY IMAGE ===============
+
+    canvas.create_image(1300,40, image = door_img, anchor = "nw")
+    canvas.create_image(320,80, image = key_img, anchor = "nw")
+
+    # ==================  CHRISTMAS_BRANCH IMAGES ===============
+
+    canvas.create_image(10,180, image = christmas_branch, anchor="nw", tags = "platform")
+    canvas.create_image(10,400, image = christmas_branch, anchor="nw", tags = "platform")
+    canvas.create_image(500,50, image = christmas_branch, anchor="nw", tags = "platform")
+    canvas.create_image(500,220, image = christmas_branch, anchor="nw", tags = "platform")
+    canvas.create_image(1150,50, image = christmas_branch, anchor="nw", tags = "platform")
+    canvas.create_image(740,380, image = christmas_branch, anchor="nw", tags = "platform")
+    canvas.create_image(1100,380, image = christmas_branch, anchor="nw", tags = "platform")
+
+
+    # ==================  CHRISTMAS_TREE IMAGE ===============
+    canvas.create_image(550,360, image = christmas_tree, anchor="nw", tags = "platform")
+    canvas.create_image(500,560, image = christmas_tree, anchor="nw", tags = "platform")
+    canvas.create_image(900,550, image = christmas_tree, anchor="nw", tags = "platform")
+
+
+    # ==================  COINS, DIMOND, ICE_THORN, PRESENT, MONEY ===============
+
+    canvas.create_image(80,410, image = monster_img, anchor = 'nw')
+    canvas.create_image(740,500, image = monster_img, anchor = 'nw')
+    canvas.create_image(880,400, image = monster_img, anchor = 'nw')
+    canvas.create_image(650,700, image = monster_img, anchor = 'nw')
+    canvas.create_image(1080,700, image = monster_img, anchor = 'nw')
+
+    canvas.create_image(500,4, image = monster_snow, anchor = 'nw')
+    canvas.create_image(15,140, image = monster_snow, anchor = 'nw')
+    canvas.create_image(500,4, image = monster_snow, anchor = 'nw')
+    canvas.create_image(320,250, image = monster_snow, anchor = 'nw')
+
+    canvas.create_image(1040,220, image = ice_thorn, anchor = 'nw')
+    canvas.create_image(1150,550, image = ice_thorn, anchor = 'nw')
+
+    
+    canvas.create_image(200,200, image = present_png, anchor = 'nw')
+    canvas.create_image(630,250, image = present_png, anchor = 'nw')
+    canvas.create_image(370,450, image = present_png, anchor = 'nw')
+    canvas.create_image(1250,400, image = present_png, anchor = 'nw')
+
+    canvas.create_image(950,60, image = coin_img, anchor = 'nw')
+    canvas.create_image(800,400, image = coin_img, anchor = 'nw')
+    canvas.create_image(990,700, image = coin_img, anchor = 'nw')
+    canvas.create_image(320,660, image = coin_img, anchor = 'nw')
+
+    canvas.create_image(660,60, image = dimond_img, anchor = 'nw')
+    canvas.create_image(180,410, image = dimond_img, anchor = 'nw')
+    canvas.create_image(640,500, image = dimond_img, anchor = 'nw')
+
     canvas.create_image(25, 10, image=back_img, anchor="nw", tags="back_all_levels")
+
+    # canvas.create_image(1, 0, image=level3_bg, anchor="nw")
+    # canvas.create_image(25, 10, image=back_img, anchor="nw", tags="back_all_levels")
 
 
 # ======================= HOME_PAGE =============================
