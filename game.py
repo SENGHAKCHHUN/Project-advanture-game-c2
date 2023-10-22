@@ -116,6 +116,7 @@ def level1(event):
     
 def level2(event):
     canvas.create_image(1, 0, image=summer_bg, anchor="nw")
+    
     canvas.create_image(25, 10, image=back_img, anchor="nw", tags="back_all_levels")
 
 def level3(event):
