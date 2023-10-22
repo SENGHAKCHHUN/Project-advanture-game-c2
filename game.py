@@ -70,6 +70,22 @@ def home():
 def exit(event):
     window.destroy()
 
+#============================ ALL LEVELS BUTTON ============================
+def allLevels():
+    
+    canvas.create_image(1, 0, image=winter_bg, anchor="nw")
+                            #==== LEVEL 1 =====
+    canvas.create_image(620, 300, image=level_img, anchor="nw", tags="level1")
+    canvas.create_text(695, 330, text="Level 1", font=("arsenal", 20, "bold"), fill="white",tags="level1")
+                            #==== LEVEL 2 =====
+    canvas.create_image(620, 370, image=level_img, anchor="nw", tags="level2")
+    canvas.create_text(695, 400, text="Level 2", font=("arsenal", 23, "bold"), fill="white",tags="level2")
+                            #==== LEVEL 3 =====
+    canvas.create_image(620, 440, image=level_img, anchor="nw", tags="level3")
+    canvas.create_text(695, 470, text="Level 3", font=("arsenal", 23, "bold"), fill="white",tags="level3")
+                            #==== BACK BUTTON=====
+    canvas.create_image(25, 10, image=back_img, anchor="nw", tags="back_home")
+    
 #=========================== FUNCTIONS MOVE PLAYER =======================
 def check_movement(dx=0, dy=0, checkGround=False):
     coord = canvas.coords(player)
