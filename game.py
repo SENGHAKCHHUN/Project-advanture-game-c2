@@ -59,6 +59,9 @@ snow_house = PhotoImage(file="Images/snow_house.png")
 monster_snow = PhotoImage(file="Images/monster_snow.png")
 ice_thorn = PhotoImage(file="Images/ice_thorn.png")
 present_png = PhotoImage(file="Images/present.png")
+worm_img=PhotoImage(file="Images/worm.png")
+spring_bg=PhotoImage(file="Images/spring_bg.png")
+goldstone_img=PhotoImage(file="Images/goldstone.png")
 
 
 #=========================== ALL LEVELS =======================
@@ -141,9 +144,51 @@ def level1(event):
     window.after(TIMED_LOOP, gravity)  
     
 def level2(event):
-    canvas.create_image(1, 0, image=summer_bg, anchor="nw")
-    
+    canvas.delete("all")
+    canvas.create_image(1, 0, image=spring_bg, anchor="nw")
     canvas.create_image(25, 10, image=back_img, anchor="nw", tags="back_all_levels")
+    canvas.create_image(700,410, image = goldstone_img, anchor="nw", tags = "platform")
+    canvas.create_image(710,200, image = goldstone_img, anchor="nw", tags = "platform")
+    canvas.create_image(200,430, image = goldstone_img, anchor="nw", tags = "platform")
+    canvas.create_image(0,500, image = goldstone_img, anchor="nw", tags = "platform")
+    canvas.create_image(310,550, image = goldstone_img, anchor="nw", tags = "platform")
+    canvas.create_image(310,300, image = goldstone_img, anchor="nw", tags = "platform")
+    canvas.create_image(10,700, image = goldstone_img, anchor="nw", tags = "platform")
+    canvas.create_image(450,410, image = goldstone_img, anchor="nw", tags = "platform")
+    canvas.create_image(10,330, image = goldstone_img, anchor="nw", tags = "platform")
+    canvas.create_image(550,275, image = goldstone_img, anchor="nw", tags = "platform")
+    canvas.create_image(620,530, image = goldstone_img, anchor="nw", tags = "platform")
+    canvas.create_image(510,110, image = goldstone_img, anchor="nw", tags = "platform")
+    canvas.create_image(890,480, image = goldstone_img, anchor="nw", tags = "platform")
+    canvas.create_image(890,100, image = goldstone_img, anchor="nw", tags = "platform")
+    canvas.create_image(900,320, image = goldstone_img, anchor="nw", tags = "platform")
+    canvas.create_image(1050,30, image = goldstone_img, anchor="nw", tags = "platform")
+    canvas.create_image(1000,210, image = goldstone_img, anchor="nw", tags = "platform")
+
+# ==================  DOOR AND KEY IMAGE ===============
+    canvas.create_image(1180,0, image = door_img, anchor = "nw")
+    canvas.create_image(680,295, image = key_img, anchor = "nw")
+# ==================  COINS, DIMOND, MONEY ===============
+    canvas.create_image(370,315, image = coin_img, anchor = 'nw')
+    canvas.create_image(600,130, image = coin_img, anchor = 'nw')
+    canvas.create_image(290,450, image = coin_img, anchor = 'nw')
+    canvas.create_image(720,550, image = coin_img, anchor = 'nw')
+    canvas.create_image(610,290, image = coin_img, anchor = 'nw')
+    canvas.create_image(770,220, image = coin_img, anchor = 'nw')
+    canvas.create_image(980,120, image = coin_img, anchor = 'nw')
+    canvas.create_image(790,430, image = coin_img, anchor = 'nw')
+
+    canvas.create_image(1080,210, image = dimond_img, anchor = 'nw')
+    canvas.create_image(530,410, image = dimond_img, anchor = 'nw')
+# ==================  PLAYER ===============
+    canvas.create_image(80,490, image =player_img, anchor = 'nw')
+# ==================  ENEMY ===============
+    canvas.create_image(420,255, image =worm_img, anchor = 'nw')
+    canvas.create_image(90,290, image =worm_img, anchor = 'nw')
+    canvas.create_image(390,510, image =worm_img, anchor = 'nw')
+    canvas.create_image(820,160, image =worm_img, anchor = 'nw')
+    canvas.create_image(960,440, image =worm_img, anchor = 'nw')
+    canvas.create_image(960,280, image =worm_img, anchor = 'nw')
 
 def level3(event):
     canvas.delete("all")
