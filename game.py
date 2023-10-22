@@ -68,55 +68,72 @@ def level1(event):
     global player
     # =============   GRASS IMAGES =========
     canvas.create_image(1, 0, image=summer_bg, anchor="nw")
-    canvas.create_image(300,180, image = grass_img, anchor="nw", tags = "platform")
-    canvas.create_image(430,280, image = grass_img, anchor="nw", tags = "platform")
+    canvas.create_image(350,180, image = grass_img, anchor="nw", tags = "platform")
+    canvas.create_image(500,330, image = grass_img, anchor="nw", tags = "platform")
     canvas.create_image(150,330, image = grass_img, anchor="nw", tags = "platform")
-    canvas.create_image(680,380, image = grass_img, anchor="nw", tags = "platform")
-    canvas.create_image(990,430, image = grass_img, anchor="nw", tags = "platform")
-    canvas.create_image(710,230, image = grass_img, anchor="nw", tags = "platform")
-    canvas.create_image(980,300, image = grass_img, anchor="nw", tags = "platform")
-    canvas.create_image(130,500, image = grass_img, anchor="nw", tags = "platform")
-    canvas.create_image(330,630, image = grass_img, anchor="nw", tags = "platform")
-    canvas.create_image(480,530, image = grass_img, anchor="nw", tags = "platform")
-    canvas.create_image(980,630, image = grass_img, anchor="nw", tags = "platform")
+    canvas.create_image(350,480, image = grass_img, anchor="nw", tags = "platform")
+    canvas.create_image(1100,430, image = grass_img, anchor="nw", tags = "platform")
+    canvas.create_image(800,280, image = grass_img, anchor="nw", tags = "platform")
+    canvas.create_image(1100,150, image = grass_img, anchor="nw", tags = "platform")
+    canvas.create_image(750,500, image = grass_img, anchor="nw", tags = "platform")
+    canvas.create_image(660,170, image = grass_img, anchor="nw", tags = "platform")
+
+
+
     canvas.create_image(10,650, image = grass_img, anchor="nw", tags = "platform")
+    canvas.create_image(200,650, image = grass_img, anchor="nw", tags = "platform") 
+    canvas.create_image(390,650, image = grass_img, anchor="nw", tags = "platform") 
+    canvas.create_image(580,650, image = grass_img, anchor="nw", tags = "platform") 
+    canvas.create_image(770,650, image = grass_img, anchor="nw", tags = "platform") 
+    canvas.create_image(960,650, image = grass_img, anchor="nw", tags = "platform") 
+    canvas.create_image(1150,650, image = grass_img, anchor="nw", tags = "platform") 
     # ==================  DOOR AND KEY IMAGE ===============
     canvas.create_image(380,100, image = door_img, anchor = "nw")
-    canvas.create_image(1120,250, image = key_img, anchor = "nw")
+    canvas.create_image(900,250, image = key_img, anchor = "nw")
     # ==================  STONE IMAGES ===============
-    canvas.create_image(650,600, image = stone_img, anchor="nw", tags = "platform")
-    canvas.create_image(450,400, image = stone_img, anchor="nw", tags = "platform")
-    canvas.create_image(800,550, image = stone_img, anchor="nw", tags = "platform")
-    canvas.create_image(950,450, image = stone_img, anchor="nw", tags = "platform")
+    canvas.create_image(150,600, image = stone_img, anchor="nw", tags = "platform")
+    canvas.create_image(650,500, image = stone_img, anchor="nw", tags = "platform")
+
     # ==================  FLOWERS ===============
-    canvas.create_image(950,200, image = flower_img, anchor = "nw")
-    canvas.create_image(900,520, image = flower_img, anchor = "nw")
-    canvas.create_image(100,390, image = flower_img, anchor = "nw")
+
+    canvas.create_image(800,250, image = flower_img, anchor = "nw")
+    canvas.create_image(800,470, image = flower_img, anchor = "nw")
+    canvas.create_image(150,300, image = flower_img, anchor = "nw")
+    canvas.create_image(150,600, image = flower_img, anchor = "nw")
+    canvas.create_image(400,620, image = flower_img, anchor = "nw")
+    canvas.create_image(1000,620, image = flower_img, anchor = "nw")
+    canvas.create_image(800,620, image = flower_img, anchor = "nw")
 
     # ==================  COINS, DIMOND, THORN, MONEY ===============
 
     # _______ MONEY IMAGES _________
     canvas.create_image(240,280, image = money_img, anchor = 'nw')
-    canvas.create_image(730,330, image = money_img, anchor = "nw")
+    canvas.create_image(730,600, image = money_img, anchor = "nw")
     
     # _______ DIMOND IMAGES _________
-    canvas.create_image(470,350, image = dimond_img, anchor = 'nw')
-    canvas.create_image(820,500, image = dimond_img, anchor = 'nw')
+    canvas.create_image(400,420, image = dimond_img, anchor = 'nw')
+    canvas.create_image(1130,100, image = dimond_img, anchor = 'nw')
 
     # _______ COIN IMAGES _________
-    canvas.create_image(410,600, image = coin_img, anchor = 'nw')
-    canvas.create_image(980,420, image = coin_img, anchor = 'nw')
-    canvas.create_image(1170,380, image = coin_img, anchor = 'nw')
+    canvas.create_image(550,300, image = coin_img, anchor = 'nw')
+    canvas.create_image(1100,390, image = coin_img, anchor = 'nw')
+    canvas.create_image(1170,390, image = coin_img, anchor = 'nw')
+    canvas.create_image(680,470, image = coin_img, anchor = 'nw')
 
     # _______ MONSTER IMAGES _________
-    canvas.create_image(270,450, image =monster_img, anchor = 'nw')
-    canvas.create_image(510,240, image =monster_img, anchor = 'nw')
-    canvas.create_image(800,340, image =monster_img, anchor = 'nw')
+    canvas.create_image(350,450, image =monster_img, anchor = 'nw')
+    canvas.create_image(600,300, image =monster_img, anchor = 'nw')
+    canvas.create_image(1200,400, image =monster_img, anchor = 'nw')
+    canvas.create_image(1200,620, image =monster_img, anchor = 'nw')
+    canvas.create_image(260,620, image =monster_img, anchor = 'nw')
+    canvas.create_image(570,620, image =monster_img, anchor = 'nw')
+    canvas.create_image(920,250, image =monster_img, anchor = 'nw')
 
     # _______ THORN IMAGES _________
-    canvas.create_image(770,130, image =thorn_img, anchor = 'nw')
-    canvas.create_image(550,430, image =thorn_img, anchor = 'nw')
-    canvas.create_image(1060,530, image =thorn_img, anchor = 'nw')
+    canvas.create_image(1230,110, image =thorn_img, anchor = 'nw')
+    canvas.create_image(470,610, image =thorn_img, anchor = 'nw')
+    canvas.create_image(970,610, image =thorn_img, anchor = 'nw')
+    canvas.create_image(370,145, image =thorn_img, anchor = 'nw')
 
     # ==================  PLAYER ===============
     player = canvas.create_image(10,150, image =player_img, anchor="nw")
@@ -245,46 +262,58 @@ def allLevels():
 def check_movement(dx=0, dy=0, checkGround=False):
     coord = canvas.coords(player)
     platforms = canvas.find_withtag("platform")
-    if coord[0] + dx < 0 or coord[1] + dy > WINDOW_WIDTH:
+
+    if coord[0] + dx < 0 or coord[1] + dx > WINDOW_WIDTH:
         return False
     if checkGround:
-        overlap = canvas.find_overlapping(coord[0], coord[1], coord[0]+ player_img.width(), coord[1] + player_img.height())
+        overlap = canvas.find_overlapping(coord[0], coord[1], coord[0] + player_img.width(), (coord[1] - 50) + player_img.height() + dy)
     else:
-        overlap = canvas.find_overlapping(coord[0], coord[1], coord[0]+ player_img.width(), coord[1] + player_img.height())
-    print(overlap)
+        overlap = canvas.find_overlapping(coord[0]+dx, coord[1]+dy, coord[0]+ player_img.width() + dx, (coord[1] - 50) + player_img.height())
+
     for platform in platforms:
         if platform in overlap:
             return False
+
     return True
+
+# -----------------------Jump by moving the player up by force pixels-----------------------------
 def jump(force):
-    global player
     if force > 0:
-        if check_movement(0, -force): 
+        if check_movement(0, -force):
             canvas.move(player, 0, -force)
-    window.after(TIMED_LOOP, jump, force-1)
+            window.after(TIMED_LOOP, jump, force-1)
+
+
+# ----------------start_move------------------------
 def start_move(event):
     if event.keysym not in keyPressed:
         keyPressed.append(event.keysym)
-        print(keyPressed)
         if len(keyPressed) == 1:
             move()
+
+#---------------Move_object----------------------------------
 def move():
-    global player
     if not keyPressed == []:
         x = 0
         if "Left" in keyPressed:
             x -= SPEED
         if "Right" in keyPressed:
             x += SPEED
-        if "space" in keyPressed and not check_movement(0, GRAVITY_FORCE, True):   
+        if "space" in keyPressed and not check_movement(0, GRAVITY_FORCE, True):
             jump(JUMP_FORCE)
-        if not check_movement(x):
+        if check_movement(x):
             canvas.move(player, x, 0)
-            window.after(TIMED_LOOP, move)
+        window.after(TIMED_LOOP, move)
+
+
+#--------check_player_move---------------------
 def gravity():
     if check_movement(0, GRAVITY_FORCE, True):
         canvas.move(player, 0, GRAVITY_FORCE)
-        window.after(TIMED_LOOP, gravity)
+    window.after(TIMED_LOOP, gravity)
+
+
+#--------------stop_move and remove key------------------------
 def stop_move(event):
     global keyPressed
     if event.keysym in keyPressed:
