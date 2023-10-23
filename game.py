@@ -59,6 +59,9 @@ snow_house = PhotoImage(file="Images/snow_house.png")
 monster_snow = PhotoImage(file="Images/monster_snow.png")
 ice_thorn = PhotoImage(file="Images/ice_thorn.png")
 present_png = PhotoImage(file="Images/present.png")
+lose_screen = PhotoImage(file="Images/lose_screen.png")
+win_screen = PhotoImage(file="Images/win_screen.png")
+back_game = PhotoImage(file="Images/back_game.png")
 
 
 #=========================== ALL LEVELS =======================
@@ -206,7 +209,7 @@ def level3(event):
 def home():
     canvas.create_image(0,0, image=home_bg, anchor="nw")
     canvas.create_image(630, 300, image=start_img, anchor="nw", tags="start")
-    canvas.create_image(630, 370, image=help_btn, anchor="nw", tags="help")
+    canvas.create_image(630, 370, image=help_btn, anchor="nw", tags="lose")
     canvas.create_image(630, 440, image=exit_img, anchor="nw", tags="exit")
 
 
@@ -217,6 +220,7 @@ def help(event):
     canvas.create_image(1, 0, image=winter_bg, anchor="nw")
     canvas.create_image(380,100, image = help_board, anchor="nw")
     canvas.create_image(25, 10, image=back_img, anchor="nw", tags="back_home")
+    
 def start(event):
     allLevels()
 def backHome(event):
@@ -240,7 +244,30 @@ def allLevels():
     canvas.create_text(695, 470, text="Level 3", font=("arsenal", 23, "bold"), fill="white",tags="level3")
                             #==== BACK BUTTON=====
     canvas.create_image(25, 10, image=back_img, anchor="nw", tags="back_home")
-    
+
+
+#============================ WIN & LOSE ============================
+def result(img):
+    global isLevel
+    canvas.delete("all")
+    canvas.create_image(0, 0, image=winter_bg, anchor="nw")
+    canvas.create_image(420, 100, image=img, anchor="nw")
+    canvas.create_text(780, 510, text=score, font="arial, 35")
+    canvas.create_image(530, 550, image=back_game, anchor="nw", tags="back_all_levels")
+    isLevel=False
+
+#LOSE
+# def lose(event):
+#     global isLevel 
+#     lose=lose_screen
+#     result(lose)
+
+#WIN
+def win(event):
+    global isLevel
+    win=win_screen
+    result(win)
+
 #=========================== FUNCTIONS MOVE PLAYER =======================
 def check_movement(dx=0, dy=0, checkGround=False):
     coord = canvas.coords(player)
@@ -293,7 +320,8 @@ def stop_move(event):
 
 #============================ KEY EVENT ============================
 canvas.tag_bind("start","<Button-1>", start)
-canvas.tag_bind("help","<Button-1>",help)
+# canvas.tag_bind("help","<Button-1>",help)
+canvas.tag_bind("lose","<Button-1>",win)
 
 
 #========================= REMOTES =================
