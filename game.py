@@ -48,7 +48,6 @@ money_img = PhotoImage(file="Images/money.png")
 thorn_img = PhotoImage(file="Images/thorn.png")
 dimond_img = PhotoImage(file="Images/dimond.png")
 monster_img = PhotoImage(file="Images/monster.png")
-# level3_bg = PhotoImage(file="Images/level3_bg.png")
 player_img = PhotoImage(file="Images/player.png")
 goldstone_img=PhotoImage(file="Images/goldstone.png")
 worm_img=PhotoImage(file="Images/worm.png")
@@ -369,13 +368,13 @@ def stop_move(event):
 
 
 #============================ KEY EVENT ============================
-canvas.tag_bind("start","<Button-1>", start)
-canvas.tag_bind("help","<Button-1>",help)
+window.bind("<Key>", start_move)
+window.bind("<KeyRelease>", stop_move)
 
 
 #========================= REMOTES =================
-window.bind("<Key>", start_move)
-window.bind("<KeyRelease>", stop_move)
+canvas.tag_bind("start","<Button-1>", start)
+canvas.tag_bind("help","<Button-1>",help)
 canvas.tag_bind("exit","<Button-1>", exit)
 canvas.tag_bind("back_home","<Button-1>",backHome)
 canvas.tag_bind("back_all_levels","<Button-1>",backTolevel)
