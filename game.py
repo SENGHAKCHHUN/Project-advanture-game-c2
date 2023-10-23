@@ -60,6 +60,9 @@ snow_house = PhotoImage(file="Images/snow_house.png")
 monster_snow = PhotoImage(file="Images/monster_snow.png")
 ice_thorn = PhotoImage(file="Images/ice_thorn.png")
 present_png = PhotoImage(file="Images/present.png")
+lose_screen = PhotoImage(file="Images/lose_screen.png")
+win_screen = PhotoImage(file="Images/win_screen.png")
+back_game = PhotoImage(file="Images/back_game.png")
 worm_img=PhotoImage(file="Images/worm.png")
 spring_bg=PhotoImage(file="Images/spring_bg.png")
 goldstone_img=PhotoImage(file="Images/goldstone.png")
@@ -273,7 +276,7 @@ def level3(event):
 def home():
     canvas.create_image(0,0, image=home_bg, anchor="nw")
     canvas.create_image(630, 300, image=start_img, anchor="nw", tags="start")
-    canvas.create_image(630, 370, image=help_btn, anchor="nw", tags="help")
+    canvas.create_image(630, 370, image=help_btn, anchor="nw", tags="lose")
     canvas.create_image(630, 440, image=exit_img, anchor="nw", tags="exit")
 
 
@@ -284,6 +287,7 @@ def help(event):
     canvas.create_image(1, 0, image=winter_bg, anchor="nw")
     canvas.create_image(380,100, image = help_board, anchor="nw")
     canvas.create_image(25, 10, image=back_img, anchor="nw", tags="back_home")
+    
 def start(event):
     allLevels()
 def backHome(event):
@@ -314,6 +318,9 @@ def allLevels():
                             #==== BACK BUTTON=====
     canvas.create_image(25, 10, image=back_img, anchor="nw", tags="back_home")
     #============================ WIN & LOSE ============================
+
+
+#============================ WIN & LOSE ============================
 def result(img):
     global isLevel
     canvas.delete("all")
