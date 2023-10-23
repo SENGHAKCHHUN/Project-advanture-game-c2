@@ -300,6 +300,7 @@ def level3(event):
 
 # ======================= HOME_PAGE =============================
 def home():
+    
     canvas.create_image(0,0, image=home_bg, anchor="nw")
     canvas.create_image(630, 300, image=start_img, anchor="nw", tags="start")
     canvas.create_image(630, 370, image=help_btn, anchor="nw", tags="help")
@@ -349,7 +350,7 @@ def lose():
     canvas.itemconfig(score_id, updatescore)
     
 def win():
-    if isKey and score > 25:
+    if isKey and score > 24:
         canvas.delete("all")
         canvas.create_image(1,0, image = winter_bg, anchor = "nw")
         canvas.create_image(700, 350, image = win_img)
@@ -507,7 +508,6 @@ def updatescore():
 window.bind("<Key>", start_move)
 window.bind("<KeyRelease>", stop_move)
 #========================= REMOTES =================
-
 canvas.tag_bind("start","<Button-1>", start)
 canvas.tag_bind("help","<Button-1>",help)
 canvas.tag_bind("exit","<Button-1>", exit)
