@@ -3,6 +3,9 @@ import tkinter as tk
 from tkinter import *
 from typing import Self
 # from PIL import ImageTk, Image
+from pygame import mixer
+import time
+
 
 #============================ CONSTANTS ============================
 
@@ -300,7 +303,7 @@ def level3(event):
 
 # ======================= HOME_PAGE =============================
 def home():
-    
+    Start_Sound()
     canvas.create_image(0,0, image=home_bg, anchor="nw")
     canvas.create_image(630, 300, image=start_img, anchor="nw", tags="start")
     canvas.create_image(630, 370, image=help_btn, anchor="nw", tags="help")
@@ -340,23 +343,55 @@ def allLevels():
 #     canvas.after(30, moveturtle4)
 # canvas.after(30, moveturtle4)
 
+#=========================== SOUND =======================
+
+def Start_Sound():
+    mixer.init() #Initialzing pyamge mixer
+    mixer.music.load('Sounds/start.wav') #Loading Music File
+    mixer.music.play() #Playing Music with Pygame
+
+def Lose_Sound():
+    mixer.init() #Initialzing pyamge mixer
+    mixer.music.load('Sounds/lose.wav') #Loading Music File
+    mixer.music.play() #Playing Music with Pygame
+
+def Win_Sound():
+    mixer.init() #Initialzing pyamge mixer
+    mixer.music.load('Sounds/win.mp3') #Loading Music File
+    mixer.music.play() #Playing Music with Pygame
+
+def Eat_Sound():
+    mixer.init() #Initialzing pyamge mixer
+    mixer.music.load('Sounds/eat.mp3') #Loading Music File
+    mixer.music.play() #Playing Music with Pygame
+    
+def Eat_Sound():
+    mixer.init() #Initialzing pyamge mixer
+    mixer.music.load('Sounds/eat.mp3') #Loading Music File
+    mixer.music.play() #Playing Music with Pygame
+
 #=========================== LOSE AND WIN =======================
 def lose():
     canvas.delete("all")
+    Lose_Sound()
     canvas.create_image(1,0, image = winter_bg ,anchor = "nw")
     canvas.create_image(700,350, image = lose_img)
     canvas.create_image(550,550, image = back_game, tags = "backgame")
     socre_id = canvas.create_text(750, 474, text=score, font=("arsenal", 25, "bold"), fill="black") 
     canvas.itemconfig(score_id, updatescore)
     
+
+
 def win():
     if isKey and score > 24:
         canvas.delete("all")
+        Win_Sound()
         canvas.create_image(1,0, image = winter_bg, anchor = "nw")
         canvas.create_image(700, 350, image = win_img)
         canvas.create_image(550,550, image = back_game, tags = "backgame")
         socre_id = canvas.create_text(750, 474, text=score, font=("arsenal", 25, "bold"), fill="black",) 
         canvas.itemconfig(score_id, updatescore)
+        
 #=========================== FUNCTIONS MOVE PLAYER =======================
 def check_movement(dx=0, dy=0, checkGround=False):
     coord = canvas.coords(player)
@@ -472,18 +507,22 @@ def move():
             lose()
         if coin_id > 0:
             score += coin
+            Eat_Sound()
             canvas.delete(coin_id)
             updatescore()
         if money_id > 0:
             score += money
+            Eat_Sound()
             canvas.delete(money_id)
             updatescore()
         if dimond_id > 0:
             score += dimond
+            Eat_Sound()
             canvas.delete(dimond_id)
             updatescore()
         if key_id > 0:
             isKey = True
+            Eat_Sound()
             canvas.delete(key_id)
             print("ok")
         if door_id > 0:
