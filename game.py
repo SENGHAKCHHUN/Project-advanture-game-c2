@@ -78,6 +78,7 @@ win_img = PhotoImage(file="Images/win.png")
 back_game = PhotoImage(file="Images/back_result.png")
 
 
+
 #============================ SCROLL BACKGROUND LEVEL 1 ============================
 
 def scroll_background():
@@ -200,9 +201,11 @@ def level2(event):
     canvas.create_image(1050,30, image = goldstone_img, anchor="nw", tags = "platform")
     canvas.create_image(1000,210, image = goldstone_img, anchor="nw", tags = "platform")
 
-# ==================  DOOR AND KEY IMAGE ===============
+# ==================  DOOR AND KEY IMAGE  AND FLOWER ===============
     canvas.create_image(1180,0, image = door_img, anchor = "nw")
     canvas.create_image(680,295, image = key_img, anchor = "nw")
+
+   
 # ==================  COINS, DIMOND, MONEY ===============
     canvas.create_image(370,315, image = coin_img, anchor = 'nw')
     canvas.create_image(600,130, image = coin_img, anchor = 'nw')
