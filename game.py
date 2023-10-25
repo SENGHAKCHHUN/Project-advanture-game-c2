@@ -10,12 +10,15 @@ import time
 keyPressed = []
 isKey = False
 isRun = False
+isLevel1 = False
+isLevel2 = False
+isLevel3 = False
 #============================ GLOBAL ============================
-score=0
 dimond = 10
 coin = 5
 money = 5
 x4 = 1
+score = 0
 #============================ MAIN WINDOW ============================
 window = tk.Tk()
 window.title("ADVANTURE GAME")
@@ -106,7 +109,8 @@ def scroll_background():
 
 def level1(event):
     canvas.delete("all")
-    global background1, background2, player, score_id
+    global background1, background2, player, score_id, nexeLevel_btn, isLevel1
+    nexeLevel_btn = 0
     score = 0
     background1 = canvas.create_image(1, 0, image= rainy, anchor="nw")
     background2 = canvas.create_image(WINDOW_WIDTH, 0, image= rainy , anchor="nw")
@@ -160,14 +164,14 @@ def level1(event):
     canvas.create_image(1170,390, image = coin_img, anchor = 'nw', tags = "coin")
     canvas.create_image(680,470, image = coin_img, anchor = 'nw', tags = "coin")
     # _______ MONSTER IMAGES _________
-    canvas.create_image(600,300, image =monster_img, anchor = 'nw', tags = "monster")
-    canvas.create_image(1200,400, image =monster_img, anchor = 'nw', tags = "monster")
-    canvas.create_image(1200,620, image =monster_img, anchor = 'nw', tags = "monster")
+    # canvas.create_image(600,300, image =monster_img, anchor = 'nw', tags = "monster")
+    # canvas.create_image(1200,400, image =monster_img, anchor = 'nw', tags = "monster")
+    # canvas.create_image(1200,620, image =monster_img, anchor = 'nw', tags = "monster")
     # _______ THORN IMAGES _________
-    canvas.create_image(1230,110, image =thorn_img, anchor = 'nw',  tags = "monster")
-    canvas.create_image(470,610, image =thorn_img, anchor = 'nw', tags = "monster")
-    canvas.create_image(970,610, image =thorn_img, anchor = 'nw', tags = "monster")
-    canvas.create_image(370,145, image =thorn_img, anchor = 'nw', tags = "monster")
+    # canvas.create_image(1230,110, image =thorn_img, anchor = 'nw',  tags = "monster")
+    # canvas.create_image(470,610, image =thorn_img, anchor = 'nw', tags = "monster")
+    # canvas.create_image(970,610, image =thorn_img, anchor = 'nw', tags = "monster")
+    # canvas.create_image(370,145, image =thorn_img, anchor = 'nw', tags = "monster")
 
     # ==================  PLAYER ===============
     player = canvas.create_image(10,150, image =player_img)
@@ -177,7 +181,8 @@ def level1(event):
 def level2(event):
 
     canvas.delete("all")
-    global background1, background2, player, score_id
+    global background1, background2, player, score_id, nexeLevel_btn
+    nexeLevel_btn = 1
     score = 0
     background1 = canvas.create_image(1, 0, image= spring_bg, anchor="nw")
     background2 = canvas.create_image(WINDOW_WIDTH, 0, image= spring_bg, anchor="nw")
@@ -219,12 +224,12 @@ def level2(event):
     canvas.create_image(1170,390, image = coin_img, anchor = 'nw', tags = "coin")
     canvas.create_image(680,470, image = coin_img, anchor = 'nw', tags = "coin")
 
-    canvas.create_image(750,125, image =worm_img, anchor = 'nw', tags = "monster")
-    canvas.create_image(130,270, image =worm_img, anchor = 'nw', tags = "monster")
-    canvas.create_image(780,420, image =worm_img, anchor = 'nw', tags = "monster")
-    canvas.create_image(820,200, image =worm_img, anchor = 'nw', tags = "monster")
-    canvas.create_image(1100,580, image =worm_img, anchor = 'nw', tags = "monster")
-    canvas.create_image(600,255, image =monster_img, anchor = 'nw', tags = "monster")
+    # canvas.create_image(750,125, image =worm_img, anchor = 'nw', tags = "monster")
+    # canvas.create_image(130,270, image =worm_img, anchor = 'nw', tags = "monster")
+    # canvas.create_image(780,420, image =worm_img, anchor = 'nw', tags = "monster")
+    # canvas.create_image(820,200, image =worm_img, anchor = 'nw', tags = "monster")
+    # canvas.create_image(1100,580, image =worm_img, anchor = 'nw', tags = "monster")
+    # canvas.create_image(600,255, image =monster_img, anchor = 'nw', tags = "monster")
 
     # ==================  PLAYER ===============
 
@@ -233,8 +238,7 @@ def level2(event):
     window.after(TIMED_LOOP, gravity)  
 
 def level3(event):
-    canvas.delete("all")
-    global background1, background2, player, score_id 
+    global background1, background2, player, score_id
     score = 0
     background1 = canvas.create_image(1, 0, image= snow_bg, anchor="nw")
     background2 = canvas.create_image(WINDOW_WIDTH, 0, image= snow_bg, anchor="nw")
@@ -300,7 +304,6 @@ def help(event):
     canvas.create_image(0,0, image=allLevels_bg , anchor="nw")
     canvas.create_image(380,100, image = help_board, anchor="nw")
     canvas.create_image(25, 10, image=back_img, anchor="nw", tags="back_home")
-
 def start(event):
     allLevels()
 def backHome(event):
@@ -375,10 +378,13 @@ def win():
         canvas.create_image(1,0, image = bg_lose_win, anchor = "nw")
         canvas.create_image(700, 350, image = win_img)
         canvas.create_image(550,550, image = back_img, tags = "backgame")
-        socre_id = canvas.create_text(750, 474, text=score, font=("arsenal", 25, "bold"), fill="black",) 
+        socre_id = canvas.create_text(750, 474, text=score, font=("arsenal", 25, "bold"), fill="black")
+        if nexeLevel_btn == 0: 
+            canvas.create_image(850, 550, image = next_level, tags ="next_level1")
+        else:
+            canvas.create_image(850, 550, image = next_level, tags ="next_level2")
         canvas.itemconfig(score_id, updatescore)
-
-        canvas.create_image(900, 474, image = next_level, tags ="next_level1")
+    
         
 #=========================== FUNCTIONS MOVE PLAYER =======================
 def check_movement(dx=0, dy=0, checkGround=False):
@@ -490,12 +496,14 @@ def check_more():
     dimond_id = check_movement_dimond()
     key_id = check_movement_key()
     door_id = check_movement_door()
+    print(isRun)
     if isRun:
         score = 0
         isRun = False
+        isKey = False
     if monster_id > 0:
-        isRun = True
         lose()
+        isRun = True
     if coin_id > 0:
         score += coin
         Eat_Sound()
@@ -515,9 +523,9 @@ def check_more():
         isKey = True
         Eat_Sound()
         canvas.delete(key_id)
-        print("ok")
     if door_id > 0:
-        win()
+        win()          
+        isRun = True   
 #--------check_player_move---------------------
 def gravity():
     if check_movement(0, GRAVITY_FORCE, True):
@@ -548,6 +556,7 @@ canvas.tag_bind("level1","<Button-1>",level1)
 canvas.tag_bind("level2","<Button-1>",level2)
 canvas.tag_bind("level3","<Button-1>",level3)
 canvas.tag_bind("next_level1", "<Button-1>", level2)
+canvas.tag_bind("next_level2", "<Button-1>", level3)
 home()
 #========================= DISPLAY WINDOW =================
 canvas.pack(expand=True, fill="both")
