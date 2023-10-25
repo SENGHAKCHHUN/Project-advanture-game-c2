@@ -10,6 +10,7 @@ import time
 keyPressed = []
 isKey = False
 isRun = False
+islevel1 = False
 #============================ GLOBAL ============================
 score=0
 dimond = 10
@@ -35,6 +36,7 @@ scrollbar_bottom = tk.Scrollbar(window, orient='horizontal', command=canvas.xvie
 canvas.configure(xscrollcommand=scrollbar_bottom.set)
 scrollbar_bottom.place(relx=0, rely=1, relwidth=1, anchor='sw')
 window.geometry(str(WINDOW_WIDTH)+"x"+str(WINDOW_HEIGHT))
+
 #============================ IMAGES ============================
 home_img = Image.open("Images/bg-defualt.png")
 home_resize = home_img.resize((WINDOW_WIDTH, WINDOW_HEIGHT))
@@ -90,6 +92,8 @@ win_img = PhotoImage(file="Images/win.png")
 player_left = PhotoImage(file="Images/player-turn-left.png")
 ice_img = PhotoImage(file="Images/ice.png")
 snow_monster = PhotoImage(file="Images/snow-monster.png")
+next_level = PhotoImage(file="Images/nextgame.png")
+
 #============================ SCROLL BACKGROUND LEVEL 1 ============================
 
 def scroll_background():
@@ -110,7 +114,6 @@ def level1(event):
     background1 = canvas.create_image(1, 0, image= rainy, anchor="nw")
     background2 = canvas.create_image(WINDOW_WIDTH, 0, image= rainy , anchor="nw")
     scroll_background()
-
     score_id = canvas.create_text(170, 50, text=" score : " + str(score), font=("arsenal", 20, "bold"), fill="white",)
     
     # =============   GRASS IMAGES =========
@@ -544,6 +547,8 @@ canvas.tag_bind("back_all_levels","<Button-1>",backTolevel)
 canvas.tag_bind("level1","<Button-1>",level1)
 canvas.tag_bind("level2","<Button-1>",level2)
 canvas.tag_bind("level3","<Button-1>",level3)
+canvas.tag_bind("next_level1", "<Button-1>", level2)
+
 home()
 #========================= DISPLAY WINDOW =================
 canvas.pack(expand=True, fill="both")
