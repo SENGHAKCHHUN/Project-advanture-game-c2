@@ -90,7 +90,8 @@ player_left = PhotoImage(file="Images/player-turn-left.png")
 ice_img = PhotoImage(file="Images/ice.png")
 snow_monster = PhotoImage(file="Images/snow-monster.png")
 next_level = PhotoImage(file="Images/next.png")
-
+grass_flower = PhotoImage(file="Images/flower-grass.png")
+grass_l2 = PhotoImage(file="Images/grass-l2.png")
 #============================ SCROLL BACKGROUND LEVEL 1 ============================
 def scroll_background():
     canvas.move(background1,-1,0)
@@ -123,13 +124,13 @@ def level1(event):
 
     canvas.create_image(750,500, image = grass_img, anchor="nw", tags = "platform")
     canvas.create_image(660,170, image = grass_img, anchor="nw", tags = "platform")
-    canvas.create_image(0,650, image = grass_img, anchor="nw", tags = "platform")
-    canvas.create_image(200,650, image = grass_img, anchor="nw", tags = "platform") 
-    canvas.create_image(390,650, image = grass_img, anchor="nw", tags = "platform") 
-    canvas.create_image(580,650, image = grass_img, anchor="nw", tags = "platform") 
-    canvas.create_image(770,650, image = grass_img, anchor="nw", tags = "platform") 
-    canvas.create_image(960,650, image = grass_img, anchor="nw", tags = "platform") 
-    canvas.create_image(1150,650, image = grass_img, anchor="nw", tags = "platform") 
+    canvas.create_image(0,650, image = grass_flower, anchor="nw", tags = "platform")
+    canvas.create_image(200,650, image = grass_flower, anchor="nw", tags = "platform") 
+    canvas.create_image(390,650, image = grass_flower, anchor="nw", tags = "platform") 
+    canvas.create_image(580,650, image = grass_flower, anchor="nw", tags = "platform") 
+    canvas.create_image(770,650, image = grass_flower, anchor="nw", tags = "platform") 
+    canvas.create_image(960,650, image = grass_flower, anchor="nw", tags = "platform") 
+    canvas.create_image(1150,650, image = grass_flower, anchor="nw", tags = "platform") 
 
     # ==================  DOOR AND KEY IMAGE ===============
     canvas.create_image(380,100, image = door_img, anchor = "nw", tags = "door")
@@ -199,27 +200,29 @@ def level2(event):
 
     canvas.create_image(750,500, image = goldstone_img, anchor="nw", tags = "platform")
     canvas.create_image(660,170, image = goldstone_img, anchor="nw", tags = "platform")
-    canvas.create_image(0,650, image = goldstone_img, anchor="nw", tags = "platform")
-    canvas.create_image(200,650, image = goldstone_img, anchor="nw", tags = "platform") 
-    canvas.create_image(390,650, image = goldstone_img, anchor="nw", tags = "platform") 
-    canvas.create_image(580,650, image = goldstone_img, anchor="nw", tags = "platform") 
-    canvas.create_image(770,650, image = goldstone_img, anchor="nw", tags = "platform") 
-    canvas.create_image(960,650, image = goldstone_img, anchor="nw", tags = "platform") 
-    canvas.create_image(1150,650, image = goldstone_img, anchor="nw", tags = "platform") 
-    canvas.create_image(150,600, image = goldstone_img, anchor="nw", tags = "platform")
-    canvas.create_image(650,500, image = goldstone_img, anchor="nw", tags = "platform")
+    canvas.create_image(0,665, image = grass_l2, anchor="nw", tags = "platform")
+    canvas.create_image(190,665, image = grass_l2, anchor="nw", tags = "platform") 
+    canvas.create_image(380,665, image = grass_l2, anchor="nw", tags = "platform") 
+    canvas.create_image(570,665, image = grass_l2, anchor="nw", tags = "platform") 
+    canvas.create_image(760,665, image = grass_l2, anchor="nw", tags = "platform") 
+    canvas.create_image(950,665, image = grass_l2, anchor="nw", tags = "platform") 
+    canvas.create_image(1140,665, image = grass_l2, anchor="nw", tags = "platform") 
+    canvas.create_image(1330,665, image = grass_l2, anchor="nw", tags = "platform") 
+
 
     # ==================  DOOR AND KEY IMAGE ===============
-    canvas.create_image(380,100, image = door_img, anchor = "nw", tags = "door")
-    canvas.create_image(900,250, image = key_img, anchor = "nw", tags = "key")
+    canvas.create_image(420,150, image = door_img, tags = "door")
+    canvas.create_image(970,250, image = key_img, tags = "key")
 
     # _______ MONEY IMAGES _________
     canvas.create_image(240,280, image = money_img, anchor = 'nw', tags = "money")
     canvas.create_image(730,600, image = money_img, anchor = "nw", tags = "money")
+    canvas.create_image(120,600, image = money_img, anchor = "nw", tags = "money")
 
     # _______ DIMOND IMAGES _________
     canvas.create_image(400,420, image = dimond_img, anchor = 'nw', tags = "dimond")
     canvas.create_image(1130,100, image = dimond_img, anchor = 'nw', tags = "dimond")
+    canvas.create_image(200,600, image = dimond_img, anchor = 'nw', tags = "dimond")
 
     # _______ COIN IMAGES _________
     canvas.create_image(550,300, image = coin_img, anchor = 'nw', tags = "coin")
@@ -227,10 +230,10 @@ def level2(event):
     canvas.create_image(1170,390, image = coin_img, anchor = 'nw', tags = "coin")
     canvas.create_image(680,470, image = coin_img, anchor = 'nw', tags = "coin")
 
-    canvas.create_image(750,125, image =worm_img, anchor = 'nw', tags = "monster")
-    canvas.create_image(130,270, image =worm_img, anchor = 'nw', tags = "monster")
+    canvas.create_image(750,100, image =worm_img, anchor = 'nw', tags = "monster")
+    canvas.create_image(135,270, image =worm_img, anchor = 'nw', tags = "monster")
     canvas.create_image(780,420, image =worm_img, anchor = 'nw', tags = "monster")
-    canvas.create_image(820,200, image =worm_img, anchor = 'nw', tags = "monster")
+    canvas.create_image(780,200, image =worm_img, anchor = 'nw', tags = "monster")
     canvas.create_image(1100,580, image =worm_img, anchor = 'nw', tags = "monster")
     canvas.create_image(600,255, image =monster_img, anchor = 'nw', tags = "monster")
 
@@ -499,7 +502,6 @@ def check_more():
     dimond_id = check_movement_dimond()
     key_id = check_movement_key()
     door_id = check_movement_door()
-    print(isRun)
     if isRun:
         score = 0
         isRun = False
