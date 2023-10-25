@@ -381,9 +381,10 @@ def win():
         canvas.create_image(700, 350, image = win_img)
         canvas.create_image(550,550, image = back_img, tags = "backgame")
         socre_id = canvas.create_text(750, 474, text=score, font=("arsenal", 25, "bold"), fill="black",) 
+        
+        canvas.create_image(850, 550, image = next_level, tags ="next_level1")
         canvas.itemconfig(score_id, updatescore)
 
-        canvas.create_image(900, 474, image = next_level, tags ="next_level1")
 
        
 #=========================== FUNCTIONS MOVE PLAYER =======================
@@ -498,12 +499,14 @@ def check_more():
     dimond_id = check_movement_dimond()
     key_id = check_movement_key()
     door_id = check_movement_door()
+    print(isRun)
     if isRun:
         score = 0
         isRun = False
+        isKey = False
     if monster_id > 0:
-        isRun = True
         lose()
+        isRun = True
     if coin_id > 0:
         score += coin
         Eat_Sound()
@@ -523,7 +526,6 @@ def check_more():
         isKey = True
         Eat_Sound()
         canvas.delete(key_id)
-        print("ok")
     if door_id > 0:
         win()
 
@@ -558,6 +560,7 @@ canvas.tag_bind("level1","<Button-1>",level1)
 canvas.tag_bind("level2","<Button-1>",level2)
 canvas.tag_bind("level3","<Button-1>",level3)
 canvas.tag_bind("next_level1", "<Button-1>", level2)
+canvas.tag_bind("next_level2", "<Button-1>", level3)
 home()
 
 #========================= DISPLAY WINDOW =================
