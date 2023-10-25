@@ -10,6 +10,7 @@ import time
 keyPressed = []
 isKey = False
 isRun = False
+
 #============================ GLOBAL ============================
 score=0
 dimond = 10
@@ -103,16 +104,18 @@ def scroll_background():
     canvas.after(5,scroll_background)
 
 #=========================== ALL LEVELS =======================
+    #=========================== LEVEL ONE =======================
 def level1(event):
     canvas.delete("all")
-    global background1, background2, player, score_id
+    global background1, background2, player, score_id, levels_win_screen, score 
     score = 0
     background1 = canvas.create_image(1, 0, image= rainy, anchor="nw")
     background2 = canvas.create_image(WINDOW_WIDTH, 0, image= rainy , anchor="nw")
     scroll_background()
-
+    levels_win_screen = 0
     score_id = canvas.create_text(170, 50, text=" score : " + str(score), font=("arsenal", 20, "bold"), fill="white",)
-    
+    canvas.create_text(1200,20, text="Level 1", font=("arsenal", 30, "bold"), fill="white")         
+     
     # =============   GRASS IMAGES =========
     canvas.create_image(350,180, image = grass_img, anchor="nw", tags = "platform")
     canvas.create_image(500,330, image = grass_img, anchor="nw", tags = "platform")
@@ -177,18 +180,19 @@ def level1(event):
     # ==================  PLAYER ===============
     player = canvas.create_image(10,150, image =player_img)
     canvas.create_image(25, 5, image=back_img, anchor="nw", tags="back_all_levels")
-    window.after(TIMED_LOOP, gravity)  
+    gravity()
 
+    #=========================== LEVEL ONE =======================
 def level2(event):
-
     canvas.delete("all")
-    global background1, background2, player, score_id
+    global background1, background2, player, score_id, levels_win_screen, score
     score = 0
     background1 = canvas.create_image(1, 0, image= spring_bg, anchor="nw")
     background2 = canvas.create_image(WINDOW_WIDTH, 0, image= spring_bg, anchor="nw")
     scroll_background()
+    levels_win_screen = 1
     score_id = canvas.create_text(170, 50, text=" score : " + str(score), font=("arsenal", 20, "bold"), fill="white",)
-    
+    canvas.create_text(1200,20, text="Level 2", font=("arsenal", 30, "bold"), fill="white") 
     # =============   GRASS IMAGES =========
     canvas.create_image(350,180, image = goldstone_img, anchor="nw", tags = "platform")
     canvas.create_image(500,330, image = goldstone_img, anchor="nw", tags = "platform")
@@ -197,7 +201,6 @@ def level2(event):
     canvas.create_image(1100,430, image = goldstone_img, anchor="nw", tags = "platform")
     canvas.create_image(800,280, image = goldstone_img, anchor="nw", tags = "platform")
     canvas.create_image(1100,150, image = goldstone_img, anchor="nw", tags = "platform")
-
     canvas.create_image(750,500, image = goldstone_img, anchor="nw", tags = "platform")
     canvas.create_image(660,170, image = goldstone_img, anchor="nw", tags = "platform")
     canvas.create_image(0,665, image = grass_l2, anchor="nw", tags = "platform")
@@ -209,27 +212,27 @@ def level2(event):
     canvas.create_image(1140,665, image = grass_l2, anchor="nw", tags = "platform") 
     canvas.create_image(1330,665, image = grass_l2, anchor="nw", tags = "platform") 
 
-
     # ==================  DOOR AND KEY IMAGE ===============
     canvas.create_image(420,150, image = door_img, tags = "door")
     canvas.create_image(970,250, image = key_img, tags = "key")
 
-    # _______ MONEY IMAGES _________
+    # ========= MONEY IMAGES =========
     canvas.create_image(240,280, image = money_img, anchor = 'nw', tags = "money")
     canvas.create_image(730,600, image = money_img, anchor = "nw", tags = "money")
     canvas.create_image(120,600, image = money_img, anchor = "nw", tags = "money")
 
-    # _______ DIMOND IMAGES _________
+    # ========= DIMOND IMAGES =========
     canvas.create_image(400,420, image = dimond_img, anchor = 'nw', tags = "dimond")
     canvas.create_image(1130,100, image = dimond_img, anchor = 'nw', tags = "dimond")
     canvas.create_image(200,600, image = dimond_img, anchor = 'nw', tags = "dimond")
 
-    # _______ COIN IMAGES _________
+    # ========= COIN IMAGES =========
     canvas.create_image(550,300, image = coin_img, anchor = 'nw', tags = "coin")
     canvas.create_image(1100,390, image = coin_img, anchor = 'nw', tags = "coin")
     canvas.create_image(1170,390, image = coin_img, anchor = 'nw', tags = "coin")
     canvas.create_image(680,470, image = coin_img, anchor = 'nw', tags = "coin")
 
+    # ========= WORM IMAGES =========
     canvas.create_image(750,100, image =worm_img, anchor = 'nw', tags = "monster")
     canvas.create_image(135,270, image =worm_img, anchor = 'nw', tags = "monster")
     canvas.create_image(780,420, image =worm_img, anchor = 'nw', tags = "monster")
@@ -237,20 +240,21 @@ def level2(event):
     canvas.create_image(1100,580, image =worm_img, anchor = 'nw', tags = "monster")
     canvas.create_image(600,255, image =monster_img, anchor = 'nw', tags = "monster")
 
-    # ==================  PLAYER ===============
+    # =============== PLAYER ============
     player = canvas.create_image(10,150, image =player_img)
     canvas.create_image(25, 5, image=back_img, anchor="nw", tags="back_all_levels")
-    window.after(TIMED_LOOP, gravity)  
+    gravity() 
 
+    #=========================== LEVEL ONE =======================
 def level3(event):
     canvas.delete("all")
-    global background1, background2, player, score_id 
+    global background1, background2, player, score_id, score
     score = 0
     background1 = canvas.create_image(1, 0, image= snow_bg, anchor="nw")
     background2 = canvas.create_image(WINDOW_WIDTH, 0, image= snow_bg, anchor="nw")
     scroll_background()
     score_id = canvas.create_text(170, 50, text=" score : " + str(score), font=("arsenal", 20, "bold"), fill="white",)
-    
+    canvas.create_text(1200,20, text="Level 3", font=("arsenal", 30, "bold"), fill="white") 
     # ==================  ICE_STONE ===============
     canvas.create_image(280,150, image = ice_stone, anchor="nw", tags = "platform")
     canvas.create_image(830,250, image = ice_stone, anchor="nw", tags = "platform")
@@ -300,7 +304,7 @@ def level3(event):
 
     player = canvas.create_image(10,150, image =player_img)
     canvas.create_image(25, 5, image=back_img, anchor="nw", tags="back_all_levels")
-    window.after(TIMED_LOOP, gravity)  
+    gravity()  
    
 # ======================= HOME_PAGE =============================
 def home():
@@ -308,7 +312,6 @@ def home():
     canvas.create_image(550, 300, image=start_img, anchor="nw", tags="start")
     canvas.create_image(550, 420, image= help_btn, anchor="nw", tags="help")
     canvas.create_image(550, 540, image=exit_img, anchor="nw", tags="exit")
-    
 
 # ======================= BACK TO LEVELS PAGE =============================
 def backTolevel(event):
@@ -318,14 +321,19 @@ def help(event):
     canvas.create_image(380,120, image = help_board, anchor="nw")
     canvas.create_image(25, 10, image=back_img, anchor="nw", tags="back_home")
 
+#========= STARTS GAME ==========
 def start(event):
     allLevels()
+
+#========= BACK HOME =============
 def backHome(event):
     home()
-#============================ EXIT ============================
+
+#============== EXIT ===========
 def exit(event):
     window.destroy()
-#============================ ALL LEVELS BUTTON ============================
+
+#============================= ALL LEVELS BUTTON ============================
 def allLevels():
     canvas.create_image(1, 0, image=allLevels_bg , anchor="nw")  
     canvas.create_image(550, 300, image=level1_img, anchor="nw", tags="level1")          
@@ -333,8 +341,8 @@ def allLevels():
     canvas.create_image(550, 540, image=level3_img, anchor="nw", tags="level3")        
     canvas.create_image(25, 10, image=back_img, anchor="nw", tags="back_home")
 
-
 #=========================== SOUND =======================
+    #======== START SUND =========
 def Start_Sound():
     mixer.init()
     mixer.music.load('Sounds/start.wav')
@@ -342,6 +350,7 @@ def Start_Sound():
     time.sleep(4)
     mixer.music.stop()
 
+    #======== LOSE SOUND =========
 def Lose_Sound():
     mixer.init() 
     mixer.music.load('Sounds/lose.wav') 
@@ -349,6 +358,7 @@ def Lose_Sound():
     time.sleep(3)
     mixer.music.stop()
 
+    #======== WIN SOUND =========
 def Win_Sound():
     mixer.init() 
     mixer.music.load('Sounds/win.mp3') 
@@ -356,17 +366,15 @@ def Win_Sound():
     time.sleep(3)
     mixer.music.stop()
 
+    #======== EAT SOUND =========
 def Eat_Sound():
     mixer.init() 
     mixer.music.load('Sounds/eat.mp3') 
     mixer.music.play()
-    
-def Eat_Sound():
-    mixer.init() 
-    mixer.music.load('Sounds/eat.mp3') 
-    mixer.music.play()
+    time.sleep(3)
+    mixer.music.stop()
 
-#=========================== LOSE AND WIN =======================
+#=========================== LOSE =======================
 def lose():
     canvas.delete("all")
     Lose_Sound()
@@ -375,7 +383,8 @@ def lose():
     canvas.create_image(550,550, image = back_img, tags = "backgame")
     socre_id = canvas.create_text(750, 474, text=score, font=("arsenal", 25, "bold"), fill="black") 
     canvas.itemconfig(score_id, updatescore)
-    
+
+#=========================== WIN =======================
 def win():
     if isKey and score > 24:
         canvas.delete("all")
@@ -384,13 +393,15 @@ def win():
         canvas.create_image(700, 350, image = win_img)
         canvas.create_image(550,550, image = back_img, tags = "backgame")
         socre_id = canvas.create_text(750, 474, text=score, font=("arsenal", 25, "bold"), fill="black",) 
-        
-        canvas.create_image(850, 550, image = next_level, tags ="next_level1")
+        if levels_win_screen == 0:
+            canvas.create_image(850, 550, image = next_level, tags ="next_level1")
+        else:
+            canvas.create_image(850, 550, image = next_level, tags ="next_level2")
         canvas.itemconfig(score_id, updatescore)
+        isKey = False
 
-
-       
 #=========================== FUNCTIONS MOVE PLAYER =======================
+    #======== CHECK MOVEMENT =========
 def check_movement(dx=0, dy=0, checkGround=False):
     coord = canvas.coords(player)
     platforms = canvas.find_withtag("platform")
@@ -404,6 +415,8 @@ def check_movement(dx=0, dy=0, checkGround=False):
         if platform in overlap:
             return False
     return True
+
+    #======== CHECK MOVEMENT MONSTER =========
 def check_movement_monster():
     coord = canvas.coords(player)
     platforms = canvas.find_withtag("monster")
@@ -412,6 +425,8 @@ def check_movement_monster():
         if platform in overlap:
             return platform
     return 0
+
+    #======== CHECK MOVEMENT COIN =========
 def check_movement_coin():
     coord = canvas.coords(player)
     platforms = canvas.find_withtag("coin")
@@ -420,6 +435,8 @@ def check_movement_coin():
         if platform in overlap:
             return platform
     return 0
+
+    #======== CHECK MOVEMENT MONEY =========
 def check_movement_money():
     coord = canvas.coords(player)
     platforms = canvas.find_withtag("money")
@@ -428,6 +445,8 @@ def check_movement_money():
         if platform in overlap:
             return platform
     return 0
+
+    #======== CHECK MOVEMENT DIMOND =========
 def check_movement_dimond():
     coord = canvas.coords(player)
     platforms = canvas.find_withtag("dimond")
@@ -436,6 +455,8 @@ def check_movement_dimond():
         if platform in overlap:
             return platform
     return 0
+
+    #======== CHECK MOVEMENT KEY =========
 def check_movement_key():
     coord = canvas.coords(player)
     platforms = canvas.find_withtag("key")
@@ -444,6 +465,7 @@ def check_movement_key():
         if platform in overlap:
             return platform
     return 0
+    #======== CHECK MOVEMENT DOOR =========
 def check_movement_door():
     coord = canvas.coords(player)
     platforms = canvas.find_withtag("door")
@@ -452,6 +474,7 @@ def check_movement_door():
         if platform in overlap:
             return platform
     return 0
+    #======== CHECK MOVEMENT MONSTER =========
 def check_movement_monster():
     coord = canvas.coords(player)
     platforms = canvas.find_withtag("monster")
@@ -477,7 +500,6 @@ def start_move(event):
 
 #========================= MOVE_PLAYER =======================
 def move():
-    
     if not keyPressed == []:
         x = 0
         if "Left" in keyPressed:
@@ -503,12 +525,13 @@ def check_more():
     key_id = check_movement_key()
     door_id = check_movement_door()
     if isRun:
+        print(isRun)
         score = 0
         isRun = False
         isKey = False
     if monster_id > 0:
-        lose()
         isRun = True
+        lose()
     if coin_id > 0:
         score += coin
         Eat_Sound()
