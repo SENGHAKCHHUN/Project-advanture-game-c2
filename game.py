@@ -10,7 +10,6 @@ import time
 keyPressed = []
 isKey = False
 isRun = False
-
 #============================ GLOBAL ============================
 score=0
 dimond = 10
