@@ -301,8 +301,8 @@ def home():
 def backTolevel(event):
     allLevels()
 def help(event):
-    canvas.create_image(0,0, image=allLevels_bg , anchor="nw")
-    canvas.create_image(380,100, image = help_board, anchor="nw")
+    canvas.create_image(0,0, image=bg_lose_win , anchor="nw")
+    canvas.create_image(380,120, image = help_board, anchor="nw")
     canvas.create_image(25, 10, image=back_img, anchor="nw", tags="back_home")
 def start(event):
     allLevels()
