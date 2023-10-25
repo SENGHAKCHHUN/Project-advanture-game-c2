@@ -534,7 +534,7 @@ def gravity():
 
 #--------------stop_move and remove key------------------------
 def stop_move(event):
-    global keyPressed
+    global keyPressedgi
     if event.keysym in keyPressed:
         keyPressed.remove(event.keysym)
 
