@@ -391,6 +391,8 @@ def check_movement(dx=0, dy=0, checkGround=False):
         if platform in overlap:
             return False
     return True
+
+    
 def check_movement_monster():
     coord = canvas.coords(player)
     platforms = canvas.find_withtag("monster")
