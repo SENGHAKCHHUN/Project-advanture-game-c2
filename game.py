@@ -94,6 +94,7 @@ snow_monster = PhotoImage(file="Images/snow-monster.png")
 next_level = PhotoImage(file="Images/next.png")
 grass_flower = PhotoImage(file="Images/flower-grass.png")
 grass_l2 = PhotoImage(file="Images/grass-l2.png")
+
 #============================<< SCROLL BACKGROUND LEVEL 1 >>============================
 def scroll_background():
     canvas.move(background1,-1,0)
@@ -103,6 +104,7 @@ def scroll_background():
     elif canvas.coords(background2)[0]<-WINDOW_WIDTH:
         canvas.coords(background2,WINDOW_WIDTH,0)
     canvas.after(5,scroll_background)
+
 #==================<<< FUNCTION FOR CREATE IMGAGE ALL LEVELS >>>===================
 def create_img_l1_p1():
     canvas.create_image(350,180, image = grass_img, anchor="nw", tags = "platform")
@@ -225,6 +227,7 @@ def create_img_l3_p2():
     canvas.create_image(1140,230, image = ice_thorn, anchor = 'nw', tags = "monster")
 
 #===========================<<< ALL LEVELS >>>=======================
+
     #================<<< LEVEL ONE >>>===================
 def level1(event):
     canvas.delete("all")
@@ -285,7 +288,7 @@ def home():
     canvas.create_image(550, 420, image= help_btn, anchor="nw", tags="help")
     canvas.create_image(550, 540, image=exit_img, anchor="nw", tags="exit")
 
-# =======================<<< BACK TO LEVELS PAGE >>>=============================
+# =======================<<< BACK TO LEVELS PAGE >>>=======================
 def backTolevel(event):
     allLevels()
 def help(event):
@@ -305,7 +308,7 @@ def backHome(event):
 def exit(event):
     window.destroy()
 
-#=============================<<< ALL LEVELS BUTTON >>>============================
+#=============================<<< ALL LEVELS BUTTON >>>======================
 def allLevels():
     canvas.create_image(1, 0, image=allLevels_bg , anchor="nw")  
     canvas.create_image(550, 300, image=level1_img, anchor="nw", tags="level1")          
@@ -314,7 +317,7 @@ def allLevels():
     canvas.create_image(25, 10, image=back_img, anchor="nw", tags="back_home")
 
 #===========================<<< SOUND >>>=======================
-    #======== LOSE SOUND =========
+    #========<<< LOSE SOUND >>>=========
 def Lose_Sound():
     mixer.init() 
     mixer.music.load('Sounds/lose.wav') 
@@ -322,7 +325,7 @@ def Lose_Sound():
     time.sleep(1)
     mixer.music.stop()
 
-    #======== WIN SOUND =========
+    #========<<< WIN SOUND >>>=========
 def Win_Sound():
     mixer.init() 
     mixer.music.load('Sounds/win.mp3') 
@@ -330,7 +333,7 @@ def Win_Sound():
     time.sleep(1)
     mixer.music.stop()
 
-    #======== EAT SOUND =========
+    #========<<< EAT SOUND >>>=========
 def Eat_Sound():
     mixer.init() 
     mixer.music.load('Sounds/eat.mp3') 
@@ -338,7 +341,7 @@ def Eat_Sound():
     time.sleep(1)
     mixer.music.stop()
 
-#=========================== LOSE =======================
+#===========================<<< LOSE >>>=======================
 def lose():
     canvas.delete("all")
     canvas.create_image(1,0, image = bg_lose_win ,anchor = "nw")
@@ -347,7 +350,8 @@ def lose():
     socre_id = canvas.create_text(750, 474, text=score, font=("arsenal", 25, "bold"), fill="black") 
     canvas.itemconfig(score_id, updatescore)
     Lose_Sound()
-#=========================== WIN =======================
+
+#===========================<<< WIN >>>=======================
 def win():
     if isKey and score > 24:
         canvas.delete("all")
@@ -361,8 +365,10 @@ def win():
             canvas.create_image(850, 550, image = next_level, tags ="next_level2")
         canvas.itemconfig(score_id, updatescore)
         Win_Sound()
-#=========================== FUNCTIONS MOVE PLAYER =======================
-    #======== CHECK MOVEMENT =========
+
+#===========================<<< FUNCTIONS MOVE PLAYER >>>=======================
+
+    #========<<< CHECK MOVEMENT >>>=========
 def check_movement(dx=0, dy=0, checkGround=False):
     coord = canvas.coords(player)
     platforms = canvas.find_withtag("platform")
@@ -377,7 +383,7 @@ def check_movement(dx=0, dy=0, checkGround=False):
             return False
     return True
 
-    #======== CHECK MOVEMENT MONSTER =========
+    #========<<< CHECK MOVEMENT MONSTER >>>=========
 def check_movement_monster():
     coord = canvas.coords(player)
     platforms = canvas.find_withtag("monster")
@@ -387,7 +393,7 @@ def check_movement_monster():
            return platform
     return 0
 
-    #======== CHECK MOVEMENT COIN =========
+    #========<<< CHECK MOVEMENT COIN >>>=========
 def check_movement_coin():
     coord = canvas.coords(player)
     platforms = canvas.find_withtag("coin")
@@ -397,7 +403,7 @@ def check_movement_coin():
             return platform
     return 0
 
-    #======== CHECK MOVEMENT MONEY =========
+    #========<<< CHECK MOVEMENT MONEY >>>=========
 def check_movement_money():
     coord = canvas.coords(player)
     platforms = canvas.find_withtag("money")
@@ -407,7 +413,7 @@ def check_movement_money():
             return platform
     return 0
 
-    #======== CHECK MOVEMENT DIMOND =========
+    #========<<< CHECK MOVEMENT DIMOND >>>=========
 def check_movement_dimond():
     coord = canvas.coords(player)
     platforms = canvas.find_withtag("dimond")
@@ -417,7 +423,7 @@ def check_movement_dimond():
             return platform
     return 0
 
-    #======== CHECK MOVEMENT KEY =========
+    #========<<< CHECK MOVEMENT KEY >>>=========
 def check_movement_key():
     coord = canvas.coords(player)
     platforms = canvas.find_withtag("key")
@@ -426,7 +432,8 @@ def check_movement_key():
         if platform in overlap:
             return platform
     return 0
-    #======== CHECK MOVEMENT DOOR =========
+
+    #========<<< CHECK MOVEMENT DOOR >>>=========
 def check_movement_door():
     coord = canvas.coords(player)
     platforms = canvas.find_withtag("door")
@@ -435,7 +442,8 @@ def check_movement_door():
         if platform in overlap:
             return platform
     return 0
-    #======== CHECK MOVEMENT MONSTER =========
+
+    #========<<< CHECK MOVEMENT MONSTER >>>=========
 def check_movement_monster():
     coord = canvas.coords(player)
     platforms = canvas.find_withtag("monster")
@@ -445,21 +453,21 @@ def check_movement_monster():
             return platform
     return 0
 
-#================= JUMP BY MOVING THE PLAYER UP BY FORECE PIXELS ===============
+#=================<<< JUMP BY MOVING THE PLAYER UP BY FORECE PIXELS >>>===============
 def jump(force):
     if force > 0:
         if check_movement(0, -force):
             canvas.move(player, 0, -force)
             window.after(TIMED_LOOP, jump, force-1)
 
-#========================= START_MOVE =======================
+#=========================<<< START_MOVE >>>=======================
 def start_move(event):
     if event.keysym not in keyPressed:
         keyPressed.append(event.keysym)
         if len(keyPressed) == 1:
             move()
 
-#========================= MOVE_PLAYER =======================
+#=========================<<< MOVE_PLAYER >>>=======================
 def move():
     if not keyPressed == []:
         x = 0
@@ -476,7 +484,7 @@ def move():
             window.after(TIMED_LOOP, move)
         check_more()
 
-#======================= CHECK MORE MOVE ======================
+#=======================<<< CHECK MORE MOVE >>>======================
 def check_more():
     global score, coin , money, dimond, isKey, isRun
     monster_id = check_movement_monster()
@@ -515,27 +523,27 @@ def check_more():
     elif door_id > 0:
         win()
 
-#============================ CHECK_PLAYER_MOVE ============================
+#============================<<< CHECK_PLAYER_MOVE >>>============================
 def gravity():
     if check_movement(0, GRAVITY_FORCE, True):
         canvas.move(player, 0, GRAVITY_FORCE)
     window.after(TIMED_LOOP, gravity)
 
-#======================== STOP_MOVE AND REMOVE KEY =====================
+#========================<<< STOP_MOVE AND REMOVE KEY >>>=====================
 def stop_move(event):
     global keyPressedgi
     if event.keysym in keyPressed:
         keyPressed.remove(event.keysym)
 
-#============================ RESULT SCORE ============================
+#============================<<< RESULT SCORE >>>============================
 def updatescore():
     canvas.itemconfig(score_id,text="Score: " + str(score) )
 
-#============================ KEY EVENT ===============================
+#============================<<< KEY EVENT >>>===============================
 window.bind("<Key>", start_move)
 window.bind("<KeyRelease>", stop_move)
 
-#=============================== REMOTES =======================
+#===============================<<< REMOTES >>>=======================
 canvas.tag_bind("start","<Button-1>", start)
 canvas.tag_bind("help","<Button-1>", help)
 canvas.tag_bind("exit","<Button-1>", exit)
@@ -549,7 +557,7 @@ canvas.tag_bind("next_level1", "<Button-1>", level2)
 canvas.tag_bind("next_level2", "<Button-1>", level3)
 home()
 
-#========================= DISPLAY WINDOW =================
+#=========================<<< DISPLAY WINDOW >>>=================
 canvas.pack(expand=True, fill="both")
 frame.pack(expand=True, fill="both")
 window.mainloop()
