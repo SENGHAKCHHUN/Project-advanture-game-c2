@@ -235,7 +235,7 @@ def level1(event):
     scroll_background()
     levels_win_screen = 0
     score_id = canvas.create_text(170, 50, text=" score : " + str(score), font=("arsenal", 20, "bold"), fill="white",)
-    canvas.create_text(1200,20, text="Level 1", font=("arsenal", 30, "bold"), fill="white")         
+    canvas.create_text(700,30, text="level one", font=("Robus", 50, "bold"), fill="red")         
     create_img_l1_p1()
     create_img_l1_p2()
     canvas.create_image(970,610, image =thorn_img, anchor = 'nw', tags = "monster")
@@ -254,10 +254,9 @@ def level2(event):
     scroll_background()
     levels_win_screen = 1
     score_id = canvas.create_text(170, 50, text=" score : " + str(score), font=("arsenal", 20, "bold"), fill="white",)
-    canvas.create_text(1200,20, text="Level 2", font=("arsenal", 30, "bold"), fill="white") 
+    canvas.create_text(700,30, text="level two", font=("Robus", 50, "bold"), fill="red")
     create_img_l2_p1()
     create_img_l2_p2()
-
     player = canvas.create_image(10,150, image =player_img)
     canvas.create_image(25, 5, image=back_img, anchor="nw", tags="back_all_levels")
     gravity() 
@@ -271,7 +270,7 @@ def level3(event):
     background2 = canvas.create_image(WINDOW_WIDTH, 0, image= snow_bg, anchor="nw")
     scroll_background()
     score_id = canvas.create_text(170, 50, text=" score : " + str(score), font=("arsenal", 20, "bold"), fill="white",)
-    canvas.create_text(1200,20, text="Level 3", font=("arsenal", 30, "bold"), fill="white")
+    canvas.create_text(700,30, text="level three", font=("Robus", 50, "bold"), fill="red")
     create_img_l3_p1()
     create_img_l3_p2()
     player = canvas.create_image(10,150, image =player_img)
@@ -313,31 +312,6 @@ def allLevels():
     canvas.create_image(550, 540, image=level3_img, anchor="nw", tags="level3")        
     canvas.create_image(25, 10, image=back_img, anchor="nw", tags="back_home")
 
-#===========================<<< SOUND >>>=======================
-    #======== LOSE SOUND =========
-def Lose_Sound():
-    mixer.init() 
-    mixer.music.load('Sounds/lose.wav') 
-    mixer.music.play() 
-    time.sleep(1)
-    mixer.music.stop()
-
-    #======== WIN SOUND =========
-def Win_Sound():
-    mixer.init() 
-    mixer.music.load('Sounds/win.mp3') 
-    mixer.music.play()
-    time.sleep(1)
-    mixer.music.stop()
-
-    #======== EAT SOUND =========
-def Eat_Sound():
-    mixer.init() 
-    mixer.music.load('Sounds/eat.mp3') 
-    mixer.music.play()
-    time.sleep(1)
-    mixer.music.stop()
-
 #=========================== LOSE =======================
 def lose():
     canvas.delete("all")
@@ -346,7 +320,6 @@ def lose():
     canvas.create_image(550,550, image = back_img, tags = "backgame")
     socre_id = canvas.create_text(750, 474, text=score, font=("arsenal", 25, "bold"), fill="black") 
     canvas.itemconfig(score_id, updatescore)
-    Lose_Sound()
 #=========================== WIN =======================
 def win():
     if isKey and score > 24:
@@ -360,7 +333,6 @@ def win():
         else:
             canvas.create_image(850, 550, image = next_level, tags ="next_level2")
         canvas.itemconfig(score_id, updatescore)
-        Win_Sound()
 #=========================== FUNCTIONS MOVE PLAYER =======================
     #======== CHECK MOVEMENT =========
 def check_movement(dx=0, dy=0, checkGround=False):
@@ -474,7 +446,7 @@ def move():
         if check_movement(x):
             canvas.move(player, x, 0)
             window.after(TIMED_LOOP, move)
-        check_more()
+            check_more()
 
 #======================= CHECK MORE MOVE ======================
 def check_more():
@@ -490,26 +462,20 @@ def check_more():
         isKey = False 
         isRun = False
     elif monster_id > 0:
-        isRun = True
         lose()
-        window
     elif coin_id > 0:
-        Eat_Sound()
         score += coin
         canvas.delete(coin_id)
         updatescore()
     elif money_id > 0:
-        Eat_Sound()
         score += money
         canvas.delete(money_id)
         updatescore()
     elif dimond_id > 0:
-        Eat_Sound()
         score += dimond
         canvas.delete(dimond_id)
         updatescore()
     elif key_id > 0:
-        Eat_Sound()
         isKey = True
         canvas.delete(key_id)
     elif door_id > 0:
