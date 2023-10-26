@@ -1,4 +1,4 @@
-#============================ IMPORTS ============================
+#============================<<< IMPORTS >>>============================
 import tkinter as tk
 from tkinter import *
 from typing import Self
@@ -6,25 +6,25 @@ from PIL import ImageTk, Image
 from pygame import mixer
 import time
 
-#============================ VARIABLES ============================
+#============================<<< VARIABLES >>>============================
 keyPressed = []
 isKey = False
 isRun = False
 
-#============================ GLOBAL ============================
+#============================<<< GLOBAL >>>============================
 score=0
 dimond = 10
 coin = 5
 money = 5
 x4 = 1
 
-#============================ MAIN WINDOW ============================
+#============================<<< MAIN WINDOW >>>============================
 window = tk.Tk()
 window.title("ADVANTURE GAME")
 frame = tk.Frame()
 canvas = tk.Canvas(frame)
 
-#============================ CONSTANTS ============================
+#============================<<< CONSTANTS >>>============================
 WINDOW_WIDTH= window.winfo_screenwidth()
 WINDOW_HEIGHT=window.winfo_screenheight()
 window.geometry(str(WINDOW_WIDTH)+"x"+str(WINDOW_HEIGHT))
@@ -33,13 +33,14 @@ JUMP_FORCE = 35
 SPEED = 5
 TIMED_LOOP = 6
 
-#============================ SCROLLBAR BACKGROUND ============================
+#======================<<< SCROLLBAR BACKGROUND >>>=======================
 scrollbar_bottom = tk.Scrollbar(window, orient='horizontal', command=canvas.xview)
 canvas.configure(xscrollcommand=scrollbar_bottom.set)
 scrollbar_bottom.place(relx=0, rely=1, relwidth=1, anchor='sw')
+
 window.geometry(str(WINDOW_WIDTH)+"x"+str(WINDOW_HEIGHT))
 
-#============================ IMAGES ============================
+#======================<<< IMAGES >>>============================
 home_img = Image.open("Images/bg-defualt.png")
 home_resize = home_img.resize((WINDOW_WIDTH, WINDOW_HEIGHT))
 home_bg = ImageTk.PhotoImage(home_resize)
@@ -93,7 +94,7 @@ snow_monster = PhotoImage(file="Images/snow-monster.png")
 next_level = PhotoImage(file="Images/next.png")
 grass_flower = PhotoImage(file="Images/flower-grass.png")
 grass_l2 = PhotoImage(file="Images/grass-l2.png")
-#============================ SCROLL BACKGROUND LEVEL 1 ============================
+#============================<< SCROLL BACKGROUND LEVEL 1 >>============================
 def scroll_background():
     canvas.move(background1,-1,0)
     canvas.move(background2,-1,0)
@@ -102,21 +103,8 @@ def scroll_background():
     elif canvas.coords(background2)[0]<-WINDOW_WIDTH:
         canvas.coords(background2,WINDOW_WIDTH,0)
     canvas.after(5,scroll_background)
-
-#=========================== ALL LEVELS =======================
-    #=========================== LEVEL ONE =======================
-def level1(event):
-    canvas.delete("all")
-    global background1, background2, player, score_id, levels_win_screen, score 
-    score = 0
-    background1 = canvas.create_image(1, 0, image= rainy, anchor="nw")
-    background2 = canvas.create_image(WINDOW_WIDTH, 0, image= rainy , anchor="nw")
-    scroll_background()
-    levels_win_screen = 0
-    score_id = canvas.create_text(170, 50, text=" score : " + str(score), font=("arsenal", 20, "bold"), fill="white",)
-    canvas.create_text(1200,20, text="Level 1", font=("arsenal", 30, "bold"), fill="white")         
-     
-    # =============   GRASS IMAGES =========
+#==================<<< FUNCTION FOR CREATE IMGAGE ALL LEVELS >>>===================
+def create_img_l1_p1():
     canvas.create_image(350,180, image = grass_img, anchor="nw", tags = "platform")
     canvas.create_image(500,330, image = grass_img, anchor="nw", tags = "platform")
     canvas.create_image(150,330, image = grass_img, anchor="nw", tags = "platform")
@@ -124,7 +112,6 @@ def level1(event):
     canvas.create_image(1100,430, image = grass_img, anchor="nw", tags = "platform")
     canvas.create_image(800,280, image = grass_img, anchor="nw", tags = "platform")
     canvas.create_image(1100,150, image = grass_img, anchor="nw", tags = "platform")
-
     canvas.create_image(750,500, image = grass_img, anchor="nw", tags = "platform")
     canvas.create_image(660,170, image = grass_img, anchor="nw", tags = "platform")
     canvas.create_image(0,650, image = grass_flower, anchor="nw", tags = "platform")
@@ -134,16 +121,12 @@ def level1(event):
     canvas.create_image(770,650, image = grass_flower, anchor="nw", tags = "platform") 
     canvas.create_image(960,650, image = grass_flower, anchor="nw", tags = "platform") 
     canvas.create_image(1150,650, image = grass_flower, anchor="nw", tags = "platform") 
-
-    # ==================  DOOR AND KEY IMAGE ===============
     canvas.create_image(380,100, image = door_img, anchor = "nw", tags = "door")
     canvas.create_image(900,250, image = key_img, anchor = "nw", tags = "key")
-
-    # ==================  STONE IMAGES ===============
     canvas.create_image(150,600, image = stone_img, anchor="nw", tags = "platform")
     canvas.create_image(650,500, image = stone_img, anchor="nw", tags = "platform")
 
-    # ==================  FLOWERS ===============
+def create_img_l1_p2():
     canvas.create_image(800,250, image = flower_img, anchor = "nw")
     canvas.create_image(800,470, image = flower_img, anchor = "nw")
     canvas.create_image(150,300, image = flower_img, anchor = "nw")
@@ -151,49 +134,21 @@ def level1(event):
     canvas.create_image(400,620, image = flower_img, anchor = "nw")
     canvas.create_image(1000,620, image = flower_img, anchor = "nw")
     canvas.create_image(800,620, image = flower_img, anchor = "nw")
-
-    # _______ MONEY IMAGES _________
     canvas.create_image(240,280, image = money_img, anchor = 'nw', tags = "money")
     canvas.create_image(730,600, image = money_img, anchor = "nw", tags = "money")
-    
-    # _______ DIMOND IMAGES _________
     canvas.create_image(400,420, image = dimond_img, anchor = 'nw', tags = "dimond")
     canvas.create_image(1130,100, image = dimond_img, anchor = 'nw', tags = "dimond")
-
-    # _______ COIN IMAGES _________
     canvas.create_image(550,300, image = coin_img, anchor = 'nw', tags = "coin")
     canvas.create_image(1100,390, image = coin_img, anchor = 'nw', tags = "coin")
     canvas.create_image(1170,390, image = coin_img, anchor = 'nw', tags = "coin")
     canvas.create_image(680,470, image = coin_img, anchor = 'nw', tags = "coin")
-
-    # _______ MONSTER IMAGES _________
     canvas.create_image(600,300, image =monster_img, anchor = 'nw', tags = "monster")
     canvas.create_image(1200,400, image =monster_img, anchor = 'nw', tags = "monster")
     canvas.create_image(1200,620, image =monster_img, anchor = 'nw', tags = "monster")
-
-    # _______ THORN IMAGES _________
     canvas.create_image(1230,110, image =thorn_img, anchor = 'nw',  tags = "monster")
     canvas.create_image(470,610, image =thorn_img, anchor = 'nw', tags = "monster")
-    canvas.create_image(970,610, image =thorn_img, anchor = 'nw', tags = "monster")
-    canvas.create_image(370,145, image =thorn_img, anchor = 'nw', tags = "monster")
 
-    # ==================  PLAYER ===============
-    player = canvas.create_image(10,150, image =player_img)
-    canvas.create_image(25, 5, image=back_img, anchor="nw", tags="back_all_levels")
-    gravity()
-
-    #=========================== LEVEL ONE =======================
-def level2(event):
-    canvas.delete("all")
-    global background1, background2, player, score_id, levels_win_screen, score
-    score = 0
-    background1 = canvas.create_image(1, 0, image= spring_bg, anchor="nw")
-    background2 = canvas.create_image(WINDOW_WIDTH, 0, image= spring_bg, anchor="nw")
-    scroll_background()
-    levels_win_screen = 1
-    score_id = canvas.create_text(170, 50, text=" score : " + str(score), font=("arsenal", 20, "bold"), fill="white",)
-    canvas.create_text(1200,20, text="Level 2", font=("arsenal", 30, "bold"), fill="white") 
-    # =============   GRASS IMAGES =========
+def create_img_l2_p1():
     canvas.create_image(350,180, image = goldstone_img, anchor="nw", tags = "platform")
     canvas.create_image(500,330, image = goldstone_img, anchor="nw", tags = "platform")
     canvas.create_image(150,330, image = goldstone_img, anchor="nw", tags = "platform")
@@ -211,28 +166,20 @@ def level2(event):
     canvas.create_image(950,665, image = grass_l2, anchor="nw", tags = "platform") 
     canvas.create_image(1140,665, image = grass_l2, anchor="nw", tags = "platform") 
     canvas.create_image(1330,665, image = grass_l2, anchor="nw", tags = "platform") 
-
-    # ==================  DOOR AND KEY IMAGE ===============
     canvas.create_image(420,150, image = door_img, tags = "door")
     canvas.create_image(970,250, image = key_img, tags = "key")
 
-    # ========= MONEY IMAGES =========
+def create_img_l2_p2():
     canvas.create_image(240,280, image = money_img, anchor = 'nw', tags = "money")
     canvas.create_image(730,600, image = money_img, anchor = "nw", tags = "money")
     canvas.create_image(120,600, image = money_img, anchor = "nw", tags = "money")
-
-    # ========= DIMOND IMAGES =========
     canvas.create_image(400,420, image = dimond_img, anchor = 'nw', tags = "dimond")
     canvas.create_image(1130,100, image = dimond_img, anchor = 'nw', tags = "dimond")
     canvas.create_image(200,600, image = dimond_img, anchor = 'nw', tags = "dimond")
-
-    # ========= COIN IMAGES =========
     canvas.create_image(550,300, image = coin_img, anchor = 'nw', tags = "coin")
     canvas.create_image(1100,390, image = coin_img, anchor = 'nw', tags = "coin")
     canvas.create_image(1170,390, image = coin_img, anchor = 'nw', tags = "coin")
     canvas.create_image(680,470, image = coin_img, anchor = 'nw', tags = "coin")
-
-    # ========= WORM IMAGES =========
     canvas.create_image(750,100, image =worm_img, anchor = 'nw', tags = "monster")
     canvas.create_image(135,270, image =worm_img, anchor = 'nw', tags = "monster")
     canvas.create_image(780,420, image =worm_img, anchor = 'nw', tags = "monster")
@@ -240,22 +187,7 @@ def level2(event):
     canvas.create_image(1100,580, image =worm_img, anchor = 'nw', tags = "monster")
     canvas.create_image(600,255, image =monster_img, anchor = 'nw', tags = "monster")
 
-    # =============== PLAYER ============
-    player = canvas.create_image(10,150, image =player_img)
-    canvas.create_image(25, 5, image=back_img, anchor="nw", tags="back_all_levels")
-    gravity() 
-
-    #=========================== LEVEL ONE =======================
-def level3(event):
-    canvas.delete("all")
-    global background1, background2, player, score_id, score
-    score = 0
-    background1 = canvas.create_image(1, 0, image= snow_bg, anchor="nw")
-    background2 = canvas.create_image(WINDOW_WIDTH, 0, image= snow_bg, anchor="nw")
-    scroll_background()
-    score_id = canvas.create_text(170, 50, text=" score : " + str(score), font=("arsenal", 20, "bold"), fill="white",)
-    canvas.create_text(1200,20, text="Level 3", font=("arsenal", 30, "bold"), fill="white") 
-    # ==================  ICE_STONE ===============
+def create_img_l3_p1():
     canvas.create_image(280,150, image = ice_stone, anchor="nw", tags = "platform")
     canvas.create_image(830,250, image = ice_stone, anchor="nw", tags = "platform")
     canvas.create_image(120,610, image = ice_stone, anchor="nw", tags = "platform")
@@ -263,8 +195,6 @@ def level3(event):
     canvas.create_image(1170,610, image = ice_stone, anchor="nw", tags = "platform")
     canvas.create_image(1100,280, image = ice_stone, anchor="nw", tags = "platform")
     canvas.create_image(640,570, image = ice_stone, anchor="nw", tags = "platform")
-
-    # ==================  CHRISTMAS_BRANCH ===============
     canvas.create_image(1140,100, image = christmas_branch, anchor="nw", tags = "platform")
     canvas.create_image(90,350, image = christmas_branch, anchor="nw", tags = "platform")
     canvas.create_image(450,350, image = christmas_branch, anchor="nw", tags = "platform")
@@ -278,42 +208,84 @@ def level3(event):
     canvas.create_image(1150,730, image = christmas_branch, tags = "platform")
     canvas.create_image(850,500, image = christmas_branch, anchor="nw", tags = "platform")
 
-    # ==================  DOOR & KEY ===============
+def create_img_l3_p2():
     canvas.create_image(1250,60, image = door_img, anchor = 'nw', tags = "door")
     canvas.create_image(300,130, image = key_img, anchor = "nw", tags = "key")
-    
-    # ==================  MONEY ===============
     canvas.create_image(1030,470, image = money_img, anchor="nw", tags = "money")
     canvas.create_image(620,80, image = money_img, anchor="nw", tags = "money")
-
-    # ==================  DIMOND ===============
     canvas.create_image(400,520, image = dimond_img, anchor = 'nw', tags = "dimond")
     canvas.create_image(1200,570, image =dimond_img, anchor = 'nw', tags = "dimond")
-
-    # ==================  PRESENT ===============
     canvas.create_image(280,325, image = present_png, anchor = 'nw', tags = "money")
     canvas.create_image(900,220, image = present_png, anchor = 'nw', tags = "money")
     canvas.create_image(650,350, image = coin_img, anchor = 'nw', tags = "coin")
     canvas.create_image(680,550, image = coin_img, anchor = 'nw', tags = "coin")
-
-    # ==================  ICE_THORN ===============
     canvas.create_image(850,470, image = ice_thorn, anchor="nw", tags = "monster")
     canvas.create_image(90,300, image = ice_thorn, anchor="nw", tags = "monster")
     canvas.create_image(460,300, image = ice_thorn, anchor = 'nw', tags = "monster")
     canvas.create_image(1140,230, image = ice_thorn, anchor = 'nw', tags = "monster")
 
+#===========================<<< ALL LEVELS >>>=======================
+    #================<<< LEVEL ONE >>>===================
+def level1(event):
+    canvas.delete("all")
+    global background1, background2, player, score_id, levels_win_screen, score 
+    score = 0
+    background1 = canvas.create_image(1, 0, image= rainy, anchor="nw")
+    background2 = canvas.create_image(WINDOW_WIDTH, 0, image= rainy , anchor="nw")
+    scroll_background()
+    levels_win_screen = 0
+    score_id = canvas.create_text(170, 50, text=" score : " + str(score), font=("arsenal", 20, "bold"), fill="white",)
+    canvas.create_text(1200,20, text="Level 1", font=("arsenal", 30, "bold"), fill="white")         
+    create_img_l1_p1()
+    create_img_l1_p2()
+    canvas.create_image(970,610, image =thorn_img, anchor = 'nw', tags = "monster")
+    canvas.create_image(370,145, image =thorn_img, anchor = 'nw', tags = "monster")
+    player = canvas.create_image(10,150, image =player_img)
+    canvas.create_image(25, 5, image=back_img, anchor="nw", tags="back_all_levels")
+    gravity()
+
+    #===========================<<< LEVEL TWO >>>=======================
+def level2(event):
+    canvas.delete("all")
+    global background1, background2, player, score_id, levels_win_screen, score
+    score = 0
+    background1 = canvas.create_image(1, 0, image= spring_bg, anchor="nw")
+    background2 = canvas.create_image(WINDOW_WIDTH, 0, image= spring_bg, anchor="nw")
+    scroll_background()
+    levels_win_screen = 1
+    score_id = canvas.create_text(170, 50, text=" score : " + str(score), font=("arsenal", 20, "bold"), fill="white",)
+    canvas.create_text(1200,20, text="Level 2", font=("arsenal", 30, "bold"), fill="white") 
+    create_img_l2_p1()
+    create_img_l2_p2()
+
+    player = canvas.create_image(10,150, image =player_img)
+    canvas.create_image(25, 5, image=back_img, anchor="nw", tags="back_all_levels")
+    gravity() 
+
+    #===========================<<< LEVEL THREE >>>=======================
+def level3(event):
+    canvas.delete("all")
+    global background1, background2, player, score_id, score
+    score = 0
+    background1 = canvas.create_image(1, 0, image= snow_bg, anchor="nw")
+    background2 = canvas.create_image(WINDOW_WIDTH, 0, image= snow_bg, anchor="nw")
+    scroll_background()
+    score_id = canvas.create_text(170, 50, text=" score : " + str(score), font=("arsenal", 20, "bold"), fill="white",)
+    canvas.create_text(1200,20, text="Level 3", font=("arsenal", 30, "bold"), fill="white")
+    create_img_l3_p1()
+    create_img_l3_p2()
     player = canvas.create_image(10,150, image =player_img)
     canvas.create_image(25, 5, image=back_img, anchor="nw", tags="back_all_levels")
     gravity()  
    
-# ======================= HOME_PAGE =============================
+# =======================<<< HOME PAGE >>>=============================
 def home():
     canvas.create_image(0,0, image=home_bg, anchor="nw")
     canvas.create_image(550, 300, image=start_img, anchor="nw", tags="start")
     canvas.create_image(550, 420, image= help_btn, anchor="nw", tags="help")
     canvas.create_image(550, 540, image=exit_img, anchor="nw", tags="exit")
 
-# ======================= BACK TO LEVELS PAGE =============================
+# =======================<<< BACK TO LEVELS PAGE >>>=============================
 def backTolevel(event):
     allLevels()
 def help(event):
@@ -321,19 +293,19 @@ def help(event):
     canvas.create_image(380,120, image = help_board, anchor="nw")
     canvas.create_image(25, 10, image=back_img, anchor="nw", tags="back_home")
 
-#========= STARTS GAME ==========
+#=========<<< STARTS GAME >>>==========
 def start(event):
     allLevels()
 
-#========= BACK HOME =============
+#=========<<< BACK HOME >>>=============
 def backHome(event):
     home()
 
-#============== EXIT ===========
+#==============<<< EXIT >>>=============
 def exit(event):
     window.destroy()
 
-#============================= ALL LEVELS BUTTON ============================
+#=============================<<< ALL LEVELS BUTTON >>>============================
 def allLevels():
     canvas.create_image(1, 0, image=allLevels_bg , anchor="nw")  
     canvas.create_image(550, 300, image=level1_img, anchor="nw", tags="level1")          
@@ -341,15 +313,7 @@ def allLevels():
     canvas.create_image(550, 540, image=level3_img, anchor="nw", tags="level3")        
     canvas.create_image(25, 10, image=back_img, anchor="nw", tags="back_home")
 
-#=========================== SOUND =======================
-    #======== START SUND =========
-def Start_Sound():
-    mixer.init()
-    mixer.music.load('Sounds/start.wav')
-    mixer.music.play()
-    time.sleep(1)
-    mixer.music.stop()
-
+#===========================<<< SOUND >>>=======================
     #======== LOSE SOUND =========
 def Lose_Sound():
     mixer.init() 
@@ -396,7 +360,6 @@ def win():
         else:
             canvas.create_image(850, 550, image = next_level, tags ="next_level2")
         canvas.itemconfig(score_id, updatescore)
-        isKey = False
         Win_Sound()
 #=========================== FUNCTIONS MOVE PLAYER =======================
     #======== CHECK MOVEMENT =========
@@ -408,7 +371,7 @@ def check_movement(dx=0, dy=0, checkGround=False):
     if checkGround:
         overlap = canvas.find_overlapping(coord[0], coord[1], coord[0] + player_img.width(), (coord[1] - 50) + player_img.height() + dy)
     else:
-        overlap = canvas.find_overlapping(coord[0]+dx, coord[1]+dy, coord[0]+ player_img.width() + dx, (coord[1] - 50) + player_img.height())
+        overlap = canvas.find_overlapping(coord[0]+ dx, coord[1]+dy, coord[0]+ player_img.width() + dx, (coord[1] - 50) + player_img.height())
     for platform in platforms:
         if platform in overlap:
             return False
@@ -420,8 +383,8 @@ def check_movement_monster():
     platforms = canvas.find_withtag("monster")
     overlap = canvas.find_overlapping(coord[0], coord[1], coord[0] + player_img.width(), (coord[1]) + player_img.height())    
     for platform in platforms:
-        if platform in overlap:
-            return platform
+         if platform in overlap:
+           return platform
     return 0
 
     #======== CHECK MOVEMENT COIN =========
@@ -524,31 +487,32 @@ def check_more():
     door_id = check_movement_door()
     if isRun:
         score = 0
+        isKey = False 
         isRun = False
-        isKey = False
-    if monster_id > 0:
+    elif monster_id > 0:
         isRun = True
         lose()
-    if coin_id > 0:
+        window
+    elif coin_id > 0:
+        Eat_Sound()
         score += coin
         canvas.delete(coin_id)
         updatescore()
+    elif money_id > 0:
         Eat_Sound()
-    if money_id > 0:
         score += money
         canvas.delete(money_id)
         updatescore()
+    elif dimond_id > 0:
         Eat_Sound()
-    if dimond_id > 0:
         score += dimond
         canvas.delete(dimond_id)
         updatescore()
+    elif key_id > 0:
         Eat_Sound()
-    if key_id > 0:
         isKey = True
         canvas.delete(key_id)
-        Eat_Sound()
-    if door_id > 0:
+    elif door_id > 0:
         win()
 
 #============================ CHECK_PLAYER_MOVE ============================
