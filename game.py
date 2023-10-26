@@ -77,10 +77,7 @@ worm_img=PhotoImage(file="Images/worm.png")
 spring_bg=PhotoImage(file="Images/spring_bg.png")
 snow_bg = PhotoImage(file="Images/snow_bg.png")
 ice_stone = PhotoImage(file="Images/ice_stone.png")
-christmas_tree = PhotoImage(file="Images/Christmas_tree.png")
 christmas_branch = PhotoImage(file="Images/Christmas_branch.png")
-snow_house = PhotoImage(file="Images/snow_house.png")
-monster_snow = PhotoImage(file="Images/monster_snow.png")
 ice_thorn = PhotoImage(file="Images/ice_thorn.png")
 present_png = PhotoImage(file="Images/present.png")
 worm_img=PhotoImage(file="Images/worm.png")
@@ -90,10 +87,10 @@ lose_img = PhotoImage(file="Images/lose.png")
 win_img = PhotoImage(file="Images/win.png")
 player_left = PhotoImage(file="Images/player-turn-left.png")
 ice_img = PhotoImage(file="Images/ice.png")
-snow_monster = PhotoImage(file="Images/snow-monster.png")
 next_level = PhotoImage(file="Images/next.png")
 grass_flower = PhotoImage(file="Images/flower-grass.png")
 grass_l2 = PhotoImage(file="Images/grass-l2.png")
+restart = PhotoImage(file="Images/restartgame.png")
 
 #============================<< SCROLL BACKGROUND LEVEL 1 >>============================
 def scroll_background():
@@ -231,14 +228,15 @@ def create_img_l3_p2():
     #================<<< LEVEL ONE >>>===================
 def level1(event):
     canvas.delete("all")
-    global background1, background2, player, score_id, levels_win_screen, score 
+    global background1, background2, player, score_id, levels_win_screen, score , play_again
     score = 0
     background1 = canvas.create_image(1, 0, image= rainy, anchor="nw")
     background2 = canvas.create_image(WINDOW_WIDTH, 0, image= rainy , anchor="nw")
     scroll_background()
     levels_win_screen = 0
+    play_again = 0
     score_id = canvas.create_text(170, 50, text=" score : " + str(score), font=("arsenal", 20, "bold"), fill="white",)
-    canvas.create_text(1200,20, text="Level 1", font=("arsenal", 30, "bold"), fill="white")         
+    canvas.create_text(700,30, text="level one", font=("Robus", 50, "bold"), fill="red")         
     create_img_l1_p1()
     create_img_l1_p2()
     canvas.create_image(970,610, image =thorn_img, anchor = 'nw', tags = "monster")
@@ -250,17 +248,17 @@ def level1(event):
     #===========================<<< LEVEL TWO >>>=======================
 def level2(event):
     canvas.delete("all")
-    global background1, background2, player, score_id, levels_win_screen, score
+    global background1, background2, player, score_id, levels_win_screen, score, play_again
     score = 0
     background1 = canvas.create_image(1, 0, image= spring_bg, anchor="nw")
     background2 = canvas.create_image(WINDOW_WIDTH, 0, image= spring_bg, anchor="nw")
     scroll_background()
     levels_win_screen = 1
+    play_again = 1
     score_id = canvas.create_text(170, 50, text=" score : " + str(score), font=("arsenal", 20, "bold"), fill="white",)
-    canvas.create_text(1200,20, text="Level 2", font=("arsenal", 30, "bold"), fill="white") 
+    canvas.create_text(700,30, text="level two", font=("Robus", 50, "bold"), fill="red")
     create_img_l2_p1()
     create_img_l2_p2()
-
     player = canvas.create_image(10,150, image =player_img)
     canvas.create_image(25, 5, image=back_img, anchor="nw", tags="back_all_levels")
     gravity() 
@@ -268,13 +266,14 @@ def level2(event):
     #===========================<<< LEVEL THREE >>>=======================
 def level3(event):
     canvas.delete("all")
-    global background1, background2, player, score_id, score
+    global background1, background2, player, score_id, score, play_again
     score = 0
     background1 = canvas.create_image(1, 0, image= snow_bg, anchor="nw")
     background2 = canvas.create_image(WINDOW_WIDTH, 0, image= snow_bg, anchor="nw")
     scroll_background()
+    play_again = 2
     score_id = canvas.create_text(170, 50, text=" score : " + str(score), font=("arsenal", 20, "bold"), fill="white",)
-    canvas.create_text(1200,20, text="Level 3", font=("arsenal", 30, "bold"), fill="white")
+    canvas.create_text(700,30, text="level three", font=("Robus", 50, "bold"), fill="red")
     create_img_l3_p1()
     create_img_l3_p2()
     player = canvas.create_image(10,150, image =player_img)
@@ -316,41 +315,20 @@ def allLevels():
     canvas.create_image(550, 540, image=level3_img, anchor="nw", tags="level3")        
     canvas.create_image(25, 10, image=back_img, anchor="nw", tags="back_home")
 
-#===========================<<< SOUND >>>=======================
-    #========<<< LOSE SOUND >>>=========
-def Lose_Sound():
-    mixer.init() 
-    mixer.music.load('Sounds/lose.wav') 
-    mixer.music.play() 
-    time.sleep(1)
-    mixer.music.stop()
-
-    #========<<< WIN SOUND >>>=========
-def Win_Sound():
-    mixer.init() 
-    mixer.music.load('Sounds/win.mp3') 
-    mixer.music.play()
-    time.sleep(1)
-    mixer.music.stop()
-
-    #========<<< EAT SOUND >>>=========
-def Eat_Sound():
-    mixer.init() 
-    mixer.music.load('Sounds/eat.mp3') 
-    mixer.music.play()
-    time.sleep(1)
-    mixer.music.stop()
-
 #===========================<<< LOSE >>>=======================
 def lose():
     canvas.delete("all")
     canvas.create_image(1,0, image = bg_lose_win ,anchor = "nw")
     canvas.create_image(700,350, image = lose_img)
     canvas.create_image(550,550, image = back_img, tags = "backgame")
+    if play_again == 0:
+        canvas.create_image(700,550, image = restart, tags = "level1")
+    elif play_again == 1:
+        canvas.create_image(700,550, image = restart, tags = "level2")
+    elif play_again == 2:
+        canvas.create_image(700,550, image = restart, tags = "level3")
     socre_id = canvas.create_text(750, 474, text=score, font=("arsenal", 25, "bold"), fill="black") 
     canvas.itemconfig(score_id, updatescore)
-    Lose_Sound()
-
 #===========================<<< WIN >>>=======================
 def win():
     if isKey and score > 24:
@@ -358,16 +336,25 @@ def win():
         canvas.create_image(1,0, image = bg_lose_win, anchor = "nw")
         canvas.create_image(700, 350, image = win_img)
         canvas.create_image(550,550, image = back_img, tags = "backgame")
-        socre_id = canvas.create_text(750, 474, text=score, font=("arsenal", 25, "bold"), fill="black",) 
+        if play_again == 0:
+            canvas.create_image(700,550, image = restart, tags = "level1")
+        elif play_again == 1:
+            canvas.create_image(700,550, image = restart, tags = "level2")
+        elif play_again == 2:
+            canvas.create_image(700,550, image = restart, tags = "level3")
+        socre_id = canvas.create_text(750, 474, text=score  , font=("arsenal", 25, "bold"), fill="black",) 
         if levels_win_screen == 0:
             canvas.create_image(850, 550, image = next_level, tags ="next_level1")
-        else:
+        elif levels_win_screen:
             canvas.create_image(850, 550, image = next_level, tags ="next_level2")
         canvas.itemconfig(score_id, updatescore)
-        Win_Sound()
-
+       
+def startSound():
+    mixer.init() 
+    mixer.music.load('Sounds/start.wav') 
+    mixer.music.play()
+    time.sleep(3)
 #===========================<<< FUNCTIONS MOVE PLAYER >>>=======================
-
     #========<<< CHECK MOVEMENT >>>=========
 def check_movement(dx=0, dy=0, checkGround=False):
     coord = canvas.coords(player)
@@ -482,7 +469,7 @@ def move():
         if check_movement(x):
             canvas.move(player, x, 0)
             window.after(TIMED_LOOP, move)
-        check_more()
+            check_more()
 
 #=======================<<< CHECK MORE MOVE >>>======================
 def check_more():
@@ -498,29 +485,24 @@ def check_more():
         isKey = False 
         isRun = False
     elif monster_id > 0:
-        isRun = True
         lose()
-        window
     elif coin_id > 0:
-        Eat_Sound()
         score += coin
         canvas.delete(coin_id)
         updatescore()
     elif money_id > 0:
-        Eat_Sound()
         score += money
         canvas.delete(money_id)
         updatescore()
     elif dimond_id > 0:
-        Eat_Sound()
         score += dimond
         canvas.delete(dimond_id)
         updatescore()
     elif key_id > 0:
-        Eat_Sound()
         isKey = True
         canvas.delete(key_id)
     elif door_id > 0:
+        
         win()
 
 #============================<<< CHECK_PLAYER_MOVE >>>============================
@@ -555,8 +537,9 @@ canvas.tag_bind("level2","<Button-1>",level2)
 canvas.tag_bind("level3","<Button-1>",level3)
 canvas.tag_bind("next_level1", "<Button-1>", level2)
 canvas.tag_bind("next_level2", "<Button-1>", level3)
-home()
 
+home()
+startSound()
 #=========================<<< DISPLAY WINDOW >>>=================
 canvas.pack(expand=True, fill="both")
 frame.pack(expand=True, fill="both")
