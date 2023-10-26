@@ -347,7 +347,7 @@ def Start_Sound():
     mixer.init()
     mixer.music.load('Sounds/start.wav')
     mixer.music.play()
-    time.sleep(4)
+    time.sleep(1)
     mixer.music.stop()
 
     #======== LOSE SOUND =========
@@ -355,7 +355,7 @@ def Lose_Sound():
     mixer.init() 
     mixer.music.load('Sounds/lose.wav') 
     mixer.music.play() 
-    time.sleep(3)
+    time.sleep(1)
     mixer.music.stop()
 
     #======== WIN SOUND =========
@@ -363,7 +363,7 @@ def Win_Sound():
     mixer.init() 
     mixer.music.load('Sounds/win.mp3') 
     mixer.music.play()
-    time.sleep(3)
+    time.sleep(1)
     mixer.music.stop()
 
     #======== EAT SOUND =========
@@ -371,24 +371,22 @@ def Eat_Sound():
     mixer.init() 
     mixer.music.load('Sounds/eat.mp3') 
     mixer.music.play()
-    time.sleep(3)
+    time.sleep(1)
     mixer.music.stop()
 
 #=========================== LOSE =======================
 def lose():
     canvas.delete("all")
-    Lose_Sound()
     canvas.create_image(1,0, image = bg_lose_win ,anchor = "nw")
     canvas.create_image(700,350, image = lose_img)
     canvas.create_image(550,550, image = back_img, tags = "backgame")
     socre_id = canvas.create_text(750, 474, text=score, font=("arsenal", 25, "bold"), fill="black") 
     canvas.itemconfig(score_id, updatescore)
-
+    Lose_Sound()
 #=========================== WIN =======================
 def win():
     if isKey and score > 24:
         canvas.delete("all")
-        Win_Sound()
         canvas.create_image(1,0, image = bg_lose_win, anchor = "nw")
         canvas.create_image(700, 350, image = win_img)
         canvas.create_image(550,550, image = back_img, tags = "backgame")
@@ -399,7 +397,7 @@ def win():
             canvas.create_image(850, 550, image = next_level, tags ="next_level2")
         canvas.itemconfig(score_id, updatescore)
         isKey = False
-
+        Win_Sound()
 #=========================== FUNCTIONS MOVE PLAYER =======================
     #======== CHECK MOVEMENT =========
 def check_movement(dx=0, dy=0, checkGround=False):
@@ -513,7 +511,7 @@ def move():
         if check_movement(x):
             canvas.move(player, x, 0)
             window.after(TIMED_LOOP, move)
-    check_more()
+        check_more()
 
 #======================= CHECK MORE MOVE ======================
 def check_more():
@@ -525,7 +523,6 @@ def check_more():
     key_id = check_movement_key()
     door_id = check_movement_door()
     if isRun:
-        print(isRun)
         score = 0
         isRun = False
         isKey = False
@@ -534,23 +531,23 @@ def check_more():
         lose()
     if coin_id > 0:
         score += coin
-        Eat_Sound()
         canvas.delete(coin_id)
         updatescore()
+        Eat_Sound()
     if money_id > 0:
         score += money
-        Eat_Sound()
         canvas.delete(money_id)
         updatescore()
+        Eat_Sound()
     if dimond_id > 0:
         score += dimond
-        Eat_Sound()
         canvas.delete(dimond_id)
         updatescore()
+        Eat_Sound()
     if key_id > 0:
         isKey = True
-        Eat_Sound()
         canvas.delete(key_id)
+        Eat_Sound()
     if door_id > 0:
         win()
 
